@@ -292,35 +292,33 @@
             </div>
         </div>
     </section>
+<section id="results">
+        <div class="container">
+            <h2 class="section-title">Student Results</h2>
+            <div class="photo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px;">
+                
+                <div style="background: var(--apple-light); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <img src="result1%20(1).JPEG" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 15px; text-align: center; font-size: 14px; color: var(--apple-grey);">Transformation 01</div>
+                </div>
 
-    <<section id="results">
-    <h2 class="section-title">Student Results</h2>
-    <div class="photo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-        
-        <div class="photo-box" style="background: none;">
-            <img src="result1%20(1).JPEG" alt="Transformation 1" style="width:100%; height:auto; border-radius:20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        </div>
+                <div style="background: var(--apple-light); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <img src="result1%20(2).JPEG" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 15px; text-align: center; font-size: 14px; color: var(--apple-grey);">Transformation 02</div>
+                </div>
 
-        <div class="photo-box" style="background: none;">
-            <img src="result1%20(2).JPEG" alt="Transformation 2" style="width:100%; height:auto; border-radius:20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        </div>
+                <div style="background: var(--apple-light); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <img src="result1%20(3).JPEG" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 15px; text-align: center; font-size: 14px; color: var(--apple-grey);">Transformation 03</div>
+                </div>
 
-        <div class="photo-box" style="background: none;">
-            <img src="result1%20(3).JPEG" alt="Transformation 3" style="width:100%; height:auto; border-radius:20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        </div>
-
-    </div>
-</section>>
-        <h2 class="section-title">Student Results</h2>
-        <div class="photo-grid">
-            <img src="result1.jpg" style="width:100%; height:100%; object-fit:cover;"
-           <img src="result1.jpg" style="width:100%; height:100%; object-fit:cover;"
+            </div>
         </div>
     </section>
 
     <section id="area">
-        <h2 class="section-title">Service Area</h2>
         <div class="container" style="text-align: center;">
+            <h2 class="section-title">Service Area</h2>
             <p style="font-size: 24px; font-weight: 600;">Based in Markham</p>
             <p style="color: var(--apple-grey); margin-bottom: 20px;">Serving Richmond Hill and the Greater Toronto Area</p>
             <p class="zh">服務範圍包括萬錦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區。</p>
@@ -332,24 +330,11 @@
         <div class="container">
             <div class="faq-item">
                 <div class="faq-q">新手適合嗎？ (Beginner friendly?) <span>+</span></div>
-                <div class="faq-a">
-                    Yes. Beginners to advanced trainees are welcome. <br>
-                    當然適合。無論你是零基礎或是進階訓練者，我都會為你安排合適的進度。
-                </div>
+                <div class="faq-a">Yes. Beginners to advanced trainees are welcome. <br>當然適合。無論你是零基礎或是進階訓練者，我都會為你安排合適的進度。</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">在哪裡上課？ (Location?) <span>+</span></div>
-                <div class="faq-a">
-                    Training sessions take place in Toronto area gyms.<br>
-                    實體課程將於多倫多地區的健身房進行。
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">有飲食建議嗎？ (Nutrition guidance?) <span>+</span></div>
-                <div class="faq-a">
-                    Yes, basic nutrition guidance is included.<br>
-                    是的，課程已包含基礎飲食建議與追蹤。
-                </div>
+                <div class="faq-a">Training sessions take place in Toronto area gyms.<br>實體課程將於多倫多地區的健身房進行。</div>
             </div>
         </div>
     </section>
@@ -357,10 +342,8 @@
     <section id="contact">
         <div class="contact-box">
             <h2 class="section-title">Get in Touch</h2>
-            <p>透過 Instagram 或 Email 與我聯絡，開啟你的健身旅程。</p>
             <a href="mailto:coachmingToronto@gmail.com">coachmingToronto@gmail.com</a>
             <a href="https://www.instagram.com/coachming_toronto" target="_blank">@coachming_toronto</a>
-            <a href="https://www.instagram.com/dayday59protein" target="_blank" style="font-size: 18px; color: var(--apple-grey);">Personal: @dayday59protein</a>
         </div>
     </section>
 
@@ -369,18 +352,15 @@
     </footer>
 
     <script>
-        // 滑動顯示動畫 (Scroll Reveal)
+        // 滑動顯示動畫
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('reveal');
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-        // FAQ 展開/收縮
+        // FAQ 展開
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('active');
@@ -388,19 +368,10 @@
                 icon.innerText = item.classList.contains('active') ? '-' : '+';
             });
         });
-
-        // 平滑捲動
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
+
 
 
 
