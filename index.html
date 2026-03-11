@@ -12,61 +12,56 @@
             --accent-blue: #0071e3;
             --success-green: #25d366;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--apple-black); line-height: 1.6; background: #fff; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        /* 基礎設置，解決手機溢出問題 */
+        html, body { overflow-x: hidden; width: 100%; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--apple-black); line-height: 1.6; background: #fff; -webkit-font-smoothing: antialiased; }
         .container { max-width: 1060px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
-        section { padding: 80px 0; overflow: hidden; }
+        section { padding: 80px 0; width: 100%; box-sizing: border-box; }
         
-        /* Navigation */
+        /* 導航欄 */
         nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        nav .container { display: flex; justify-content: center; gap: 20px; }
+        nav .container { display: flex; justify-content: center; gap: clamp(10px, 4vw, 30px); }
         nav a { text-decoration: none; color: var(--apple-black); font-size: 13px; font-weight: 500; opacity: 0.8; }
 
-        /* Hero Section */
-        .hero { padding: 160px 0 80px; text-align: center; }
-        .hero h1 { font-size: 48px; font-weight: 700; margin: 0; letter-spacing: -1.5px; line-height: 1.1; padding: 0 10px; }
-        .hero .slogan-cn { font-size: 24px; font-weight: 600; margin: 20px 0 10px; color: var(--apple-black); }
-        .hero .slogan-en { font-size: 16px; color: var(--apple-grey); margin-bottom: 35px; }
-        .cta-btn { background-color: var(--accent-blue); color: white; padding: 14px 28px; border-radius: 980px; text-decoration: none; font-size: 16px; font-weight: 500; display: inline-block; }
+        /* Hero 主視覺 */
+        .hero { padding: clamp(120px, 20vh, 180px) 0 80px; text-align: center; }
+        .hero h1 { font-size: clamp(32px, 8vw, 64px); font-weight: 700; margin: 0; letter-spacing: -1.5px; line-height: 1.1; }
+        .hero .slogan-cn { font-size: clamp(20px, 5vw, 28px); font-weight: 600; margin: 20px 0 10px; }
+        .hero .slogan-en { font-size: clamp(14px, 3vw, 18px); color: var(--apple-grey); margin-bottom: 40px; }
+        .cta-btn { background-color: var(--accent-blue); color: white; padding: 14px 28px; border-radius: 980px; text-decoration: none; font-size: 17px; font-weight: 500; display: inline-block; transition: transform 0.2s; }
 
-        /* About Section - 修正出界問題 */
-        .about-box { background: var(--apple-light); padding: 40px 25px; border-radius: 24px; margin-bottom: 30px; }
-        .about-box h2 { font-size: 28px; margin-top: 0; }
-        .badge-list { list-style: none; padding: 0; margin-top: 25px; }
-        .badge-item { display: flex; align-items: flex-start; margin-bottom: 18px; font-size: 15px; font-weight: 600; line-height: 1.4; }
-        .badge-icon { background: #fff; min-width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 18px; }
+        /* 關於教練 - 合法加入 TIME™ 經驗 */
+        .about-box { background: var(--apple-light); padding: clamp(25px, 5vw, 50px); border-radius: 24px; margin-top: -20px; }
+        .badge-list { list-style: none; padding: 0; margin-top: 30px; }
+        .badge-item { display: flex; align-items: flex-start; margin-bottom: 20px; font-size: 15px; font-weight: 600; line-height: 1.4; }
+        .badge-icon { background: #fff; min-width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-        /* Training Program Cards (白底 Hover 版) */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        /* 訓練課程 - 你鍾意嘅白色 Hover 卡片內容 */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .service-card { background: #fff; padding: 40px 30px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.08); transition: all 0.3s ease; }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
-        .service-card h3 { font-size: 22px; margin: 0 0 5px; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-color: transparent; }
+        .service-card h3 { font-size: 24px; margin: 0 0 5px; }
         .service-card .en-title { font-size: 13px; color: var(--accent-blue); font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .service-card ul { padding: 0; list-style: none; font-size: 15px; color: #4b4b4d; }
         .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
         .service-card li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
 
-        /* Photo Grids */
-        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .photo-card { border-radius: 16px; overflow: hidden; background: #eee; }
+        /* 成果圖與評價圖 - 手機適配 */
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(10px, 3vw, 20px); }
+        .photo-card { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .photo-card img { width: 100%; display: block; height: auto; }
 
-        /* FAQ Section */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; cursor: pointer; }
+        /* FAQ */
+        .faq-item { border-bottom: 1px solid #eee; padding: 22px 0; cursor: pointer; }
         .faq-q { font-size: 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        .faq-a { display: none; padding-top: 12px; color: var(--apple-grey); font-size: 14px; line-height: 1.6; }
+        .faq-a { display: none; padding-top: 15px; color: var(--apple-grey); font-size: 14px; line-height: 1.6; }
         .faq-item.active .faq-a { display: block; }
 
-        /* WhatsApp Button */
+        /* WhatsApp */
         .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--success-green); width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(37,211,102,0.3); z-index: 2000; }
 
-        /* 手機版特別優化 (Mobile Optimization) */
         @media (max-width: 600px) {
-            .hero h1 { font-size: 36px; }
-            .hero .slogan-cn { font-size: 20px; }
-            .photo-grid { grid-template-columns: 1fr; } /* 手機成果圖變一列，睇得清楚啲 */
-            .badge-item { font-size: 14px; }
-            section { padding: 60px 0; }
+            .photo-grid { grid-template-columns: 1fr; } /* 手機版圖變單行，方便閱讀 */
         }
     </style>
 </head>
@@ -93,14 +88,13 @@
     <section id="about" style="padding-top: 0;">
         <div class="container">
             <div class="about-box">
-                <h2>Professional Background / 專業背景</h2>
-                <p>擁有超過 5 年健身教學經驗，在香港時專門教授女性學員。我主張結合「糾正性訓練」與「科學化增肌減脂」，助你由內而外改變體質。<br>
-                Over 5 years of coaching experience, specializing in women's fitness. I combine Corrective Exercise with scientific fat loss to transform your body sustainably.</p>
+                <h2 style="margin-top:0;">Professional Background / 專業背景</h2>
+                <p>超過 5 年教學經驗，曾於香港專修女性健身。擅長將「糾正性訓練」與「科學減脂」結合，為學員打造健康體態。<br>Over 5 years of experience specializing in women's fitness. Expert in combining Corrective Exercise with scientific fat loss.</p>
                 <ul class="badge-list">
-                    <li class="badge-item"><span class="badge-icon">👑</span> 2024-2025 Miss Chinese Toronto Coach / 多倫多華裔小姐指定教練</li>
-                    <li class="badge-item"><span class="badge-icon">📜</span> NCSF Certified Personal Trainer / NCSF 認證私人教練</li>
-                    <li class="badge-item"><span class="badge-icon">🛡️</span> Corrective Exercise Specialist / 糾正性訓練專家</li>
-                    <li class="badge-item"><span class="badge-icon">👩🏻</span> Women's Fitness Expert / 豐富女性體態優化經驗</li>
+                    <li class="badge-item"><span class="badge-icon">👑</span> 2024-2025 Miss Chinese Toronto Official Coach / 華裔小姐指定教練</li>
+                    <li class="badge-item"><span class="badge-icon">📜</span> NCSF Certified Trainer & Corrective Exercise Specialist / 私人教練及糾正性訓練專家</li>
+                    <li class="badge-item"><span class="badge-icon">👨‍🦳</span> Experienced in delivering UHN TIME™ Senior Mobility Protocol / 具長者平衡防跌教學經驗</li>
+                    <li class="badge-item"><span class="badge-icon">👩🏻</span> 5+ Years Women's Fitness Excellence / 五年女性專項指導經驗</li>
                 </ul>
             </div>
         </div>
@@ -108,33 +102,33 @@
 
     <section id="services" style="background: var(--apple-light);">
         <div class="container">
-            <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">Training Programs / 訓練課程</h2>
+            <h2 style="text-align: center; margin-bottom: 50px;">Training Programs / 訓練課程</h2>
             <div class="service-grid">
                 <div class="service-card">
                     <h3>一對一私人訓練</h3>
                     <span class="en-title">1-on-1 Personal Training</span>
                     <ul>
-                        <li>個人化目標定制計劃 (Tailored plans)</li>
-                        <li>全程專注動作細節 (Focus on form & safety)</li>
-                        <li>最高效率達成目標 (Maximum efficiency)</li>
+                        <li>個人化目標定制 (Customized goals)</li>
+                        <li>最高強度動作修正 (Form correction)</li>
+                        <li>高效達成理想體態 (Maximum results)</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>一對二小組訓練</h3>
                     <span class="en-title">1-on-2 Semi-Private</span>
                     <ul>
-                        <li>與伴侶或親友共同進步 (Train with a partner)</li>
-                        <li>高性價比訓練方案 (Cost-effective)</li>
-                        <li>增加運動趣味性 (Increased motivation)</li>
+                        <li>與親友伴侶同練 (Train with a partner)</li>
+                        <li>高性價比方案 (Cost-effective)</li>
+                        <li>互相激勵進步 (Mutual motivation)</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>線上遠程指導</h3>
                     <span class="en-title">Online Coaching</span>
                     <ul>
-                        <li>突破地理位置限制 (Location independent)</li>
-                        <li>每週訓練課表更新 (Weekly program updates)</li>
-                        <li>動作視訊回饋分析 (Video form feedback)</li>
+                        <li>突破地區限制 (Global access)</li>
+                        <li>每週課表更新 (Weekly plans)</li>
+                        <li>定期進度追蹤 (Progress tracking)</li>
                     </ul>
                 </div>
             </div>
@@ -143,7 +137,7 @@
 
     <section id="results">
         <div class="container">
-            <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">Student Results / 學員成果</h2>
+            <h2 style="text-align: center; margin-bottom: 40px;">Student Results / 學員成果</h2>
             <div class="photo-grid">
                 <div class="photo-card"><img src="result1%20(1).JPEG"></div>
                 <div class="photo-card"><img src="result1%20(2).JPEG"></div>
@@ -155,30 +149,42 @@
         </div>
     </section>
 
+    <section id="reviews" style="background: var(--apple-light);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Success Stories / 真實評價</h2>
+            <div class="photo-grid">
+                <div class="photo-card"><img src="review1%20(1).PNG"></div>
+                <div class="photo-card"><img src="review1%20(2).PNG"></div>
+                <div class="photo-card"><img src="review1%20(3).PNG"></div>
+                <div class="photo-card"><img src="review1%20(4).PNG"></div>
+                <div class="photo-card"><img src="review1%20(5).PNG"></div>
+                <div class="photo-card"><img src="review1%20(6).PNG"></div>
+            </div>
+        </div>
+    </section>
+
     <section id="faq">
         <div class="container">
-            <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">FAQ / 常見問題</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-q">上課地點在哪裡？ / Where is the location? <span>+</span></div>
-                    <div class="faq-a">主要於 Markham 及 Richmond Hill 地區。具體健身房地點將於諮詢時確認。<br>Mainly in Markham and Richmond Hill. Gym details will be confirmed during consultation.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">新手適合參加嗎？ / Is it suitable for beginners? <span>+</span></div>
-                    <div class="faq-a">絕對適合。我會由最基礎的動作控制與呼吸教起，確保新手也能安全起步。<br>Yes. We start with fundamental movement control and breathing to ensure a safe start for beginners.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">是否提供飲食建議？ / Do you provide nutrition advice? <span>+</span></div>
-                    <div class="faq-a">是的。我會根據您的身體數據提供科學的宏觀營養建議，而非極端節食。<br>Yes. I provide scientific macro recommendations based on your body data, no extreme dieting.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">需要訓練多久才見效？ / How long to see results? <span>+</span></div>
-                    <div class="faq-a">通常堅持 4-8 週會見到明顯身形變化，我們會注重長遠且可持續的轉變。<br>Noticeable changes typically appear in 4-8 weeks. We focus on long-term, sustainable results.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">收費模式是怎樣的？ / What is the pricing model? <span>+</span></div>
-                    <div class="faq-a">我們提供靈活的課時套餐。詳細報價將在初步評估後提供。<br>We offer flexible training packages. Detailed pricing will be provided after the initial assessment.</div>
-                </div>
+            <h2 style="text-align: center; margin-bottom: 40px;">FAQ / 常見問題</h2>
+            <div class="faq-item">
+                <div class="faq-q">上課地點在哪裡？ / Where is the location? <span>+</span></div>
+                <div class="faq-a">主要於 Markham 及 Richmond Hill 地區健身房。具體地點將於諮詢時確認。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">新手適合參加嗎？ / Is it suitable for beginners? <span>+</span></div>
+                <div class="faq-a">絕對適合。我會由最基礎的呼吸與關節活動教起，確保新手安全且有效率。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否有飲食建議？ / Do you provide nutrition advice? <span>+</span></div>
+                <div class="faq-a">會。我會根據數據提供科學的營養建議，助你建立不捱餓的可持續飲食習慣。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">需要訓練多久才見效？ / How long to see results? <span>+</span></div>
+                <div class="faq-a">通常 4-8 週會見到身形改善。持續的訓練才是維持理想體態的關鍵。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">收費模式是怎樣的？ / What is the pricing model? <span>+</span></div>
+                <div class="faq-a">提供靈活課時套餐。詳細報價會在初步評估後根據你的需求提供。</div>
             </div>
         </div>
     </section>
