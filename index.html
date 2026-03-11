@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach Ming Toronto | Professional Personal Training</title>
+    <title>Coach Ming Toronto | MCT Fitness Professional Training</title>
     <style>
         :root {
             --apple-black: #1d1d1f;
@@ -11,12 +11,13 @@
             --apple-light: #f5f5f7;
             --accent-blue: #0071e3;
             --success-green: #25d366;
+            --gold: #d4af37;
         }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--apple-black); line-height: 1.6; background: #fff; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         .container { max-width: 1060px; margin: 0 auto; padding: 0 22px; }
-        section { padding: 100px 0; }
-        .section-title { font-size: 40px; font-weight: 700; text-align: center; margin-bottom: 10px; letter-spacing: -1.2px; }
-        .section-subtitle { text-align: center; color: var(--apple-grey); margin-bottom: 60px; font-size: 17px; font-weight: 400; }
+        section { padding: 80px 0; }
+        .section-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 10px; letter-spacing: -1.2px; }
+        .section-subtitle { text-align: center; color: var(--apple-grey); margin-bottom: 50px; font-size: 16px; }
         
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
@@ -24,35 +25,32 @@
         nav a { text-decoration: none; color: var(--apple-black); font-size: 13px; font-weight: 400; opacity: 0.8; }
 
         /* Hero Section */
-        .hero { padding: 220px 0 150px; text-align: center; background: #fff; }
-        .hero h1 { font-size: 64px; font-weight: 700; margin: 0; letter-spacing: -2.5px; line-height: 1.1; }
-        .hero .slogan-cn { font-size: 28px; font-weight: 600; margin: 24px 0 12px; color: var(--apple-black); }
-        .hero .slogan-en { font-size: 20px; color: var(--apple-grey); margin-bottom: 60px; }
-        .cta-btn { background-color: var(--accent-blue); color: white; padding: 16px 32px; border-radius: 980px; text-decoration: none; font-size: 18px; font-weight: 500; transition: all 0.3s ease; display: inline-block; }
+        .hero { padding: 180px 0 100px; text-align: center; background: #fff; }
+        .hero h1 { font-size: 56px; font-weight: 700; margin: 0; letter-spacing: -2px; line-height: 1.1; }
+        .hero .slogan-cn { font-size: 26px; font-weight: 600; margin: 24px 0 12px; }
+        .hero .slogan-en { font-size: 18px; color: var(--apple-grey); margin-bottom: 40px; }
+        .cta-btn { background-color: var(--accent-blue); color: white; padding: 16px 32px; border-radius: 980px; text-decoration: none; font-size: 17px; font-weight: 500; transition: all 0.3s ease; display: inline-block; }
         .cta-btn:hover { background-color: #0077ed; transform: scale(1.02); }
+
+        /* About Section - 新增背書區塊 */
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; background: var(--apple-light); padding: 60px 40px; border-radius: 30px; }
+        .badge-list { list-style: none; padding: 0; }
+        .badge-item { display: flex; align-items: center; margin-bottom: 15px; font-weight: 500; }
+        .badge-icon { background: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
         /* Photo Grids */
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .photo-card { border-radius: 22px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #fff; }
-        .photo-card img { width: 100%; display: block; height: auto; transition: transform 0.5s ease; }
-        .photo-card:hover img { transform: scale(1.05); }
+        .photo-card { border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #fff; }
+        .photo-card img { width: 100%; display: block; height: auto; }
 
         /* FAQ Style */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item { border-bottom: 1px solid #eee; padding: 25px 0; cursor: pointer; }
-        .faq-q { font-size: 18px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
-        .faq-a { display: none; padding-top: 15px; color: var(--apple-grey); font-size: 16px; line-height: 1.8; }
+        .faq-item { border-bottom: 1px solid #eee; padding: 22px 0; cursor: pointer; max-width: 800px; margin: 0 auto; }
+        .faq-q { font-size: 17px; font-weight: 600; display: flex; justify-content: space-between; }
+        .faq-a { display: none; padding-top: 12px; color: var(--apple-grey); font-size: 15px; }
         .faq-item.active .faq-a { display: block; }
-        .faq-icon { font-size: 20px; transition: transform 0.2s; color: var(--apple-grey); }
-        .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent-blue); }
 
         /* WhatsApp Button */
         .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: var(--success-green); color: white; width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); z-index: 2000; text-decoration: none; }
-        
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 40px; }
-            .section-title { font-size: 32px; }
-        }
     </style>
 </head>
 <body>
@@ -66,19 +64,62 @@
         </div>
     </nav>
 
-    <header id="about" class="hero">
+    <header class="hero">
         <div class="container">
             <h1>Precision in Motion,<br>Excellence in Results.</h1>
-            <p class="slogan-cn">精確動作，卓越成效。</p>
-            <p class="slogan-en">Coach Ming | Toronto & Markham Personal Trainer</p>
+            <p class="slogan-cn">精確動作，打造理想體態。</p>
+            <p class="slogan-en">Coach Ming | Toronto Professional Personal Trainer</p>
             <a href="https://wa.me/14376630425" class="cta-btn">立即預約諮詢 (Free Consultation)</a>
         </div>
     </header>
 
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2 style="margin-top:0;">Meet Your Coach</h2>
+                    <p style="color:var(--apple-grey);">擁有 5 年以上豐富健身教學經驗。曾於香港專注女性健身指導，深諳女性體態雕塑與運動心理。現於多倫多致力於透過科學、精準的動作糾正，幫助每位學員達成持久的健康轉變。</p>
+                    <ul class="badge-list">
+                        <li class="badge-item"><span class="badge-icon">👑</span> 2024-2025 多倫多華裔小姐競選指定健身教練</li>
+                        <li class="badge-item"><span class="badge-icon">📜</span> NCSF 認證私人教練 (Licensed Trainer)</li>
+                        <li class="badge-item"><span class="badge-icon">🛡️</span> Corrective Exercise Specialist (糾正性訓練專家)</li>
+                        <li class="badge-item"><span class="badge-icon">👩🏻</span> 專攻女性增肌減脂與體態優化</li>
+                    </ul>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                    <h4 style="margin-top:0; color:var(--accent-blue);">為什麼選擇 MCT Fitness?</h4>
+                    <p style="font-size: 15px;">我不僅教你如何舉重，更教你如何正確地移動身體。結合糾正性訓練（Corrective Exercise），我們能在預防受傷的同時，從根源改善姿勢問題（如圓肩、盆骨前傾），由內而外散發自信。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: #fff;">
+        <div class="container">
+            <h2 class="section-title">Training Programs</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <div style="background: var(--apple-light); padding: 40px; border-radius: 25px;">
+                    <span style="color:var(--accent-blue); font-weight:700; font-size:12px; text-transform:uppercase;">Customized</span>
+                    <h3>1-on-1 私人訓練</h3>
+                    <p>針對您的個人體質與目標，提供最高強度的關注與實時動作修正。</p>
+                </div>
+                <div style="background: var(--apple-light); padding: 40px; border-radius: 25px;">
+                    <span style="color:var(--accent-blue); font-weight:700; font-size:12px; text-transform:uppercase;">Small Group</span>
+                    <h3>1-on-2 小組訓練</h3>
+                    <p>與閨蜜或伴侶共同訓練，相互激勵的同時分擔成本。</p>
+                </div>
+                <div style="background: var(--apple-light); padding: 40px; border-radius: 25px;">
+                    <span style="color:var(--accent-blue); font-weight:700; font-size:12px; text-transform:uppercase;">Global</span>
+                    <h3>線上遠程指導</h3>
+                    <p>不受地區限制，提供每週課表監控與動作視訊分析。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="results">
         <div class="container">
             <h2 class="section-title">Student Results</h2>
-            <p class="section-subtitle">學員訓練成果</p>
             <div class="photo-grid">
                 <div class="photo-card"><img src="result1%20(1).JPEG"></div>
                 <div class="photo-card"><img src="result1%20(2).JPEG"></div>
@@ -93,7 +134,6 @@
     <section id="reviews" style="background: var(--apple-light);">
         <div class="container">
             <h2 class="section-title">Success Stories</h2>
-            <p class="section-subtitle">學員真實評價</p>
             <div class="photo-grid">
                 <div class="photo-card"><img src="review1%20(1).PNG"></div>
                 <div class="photo-card"><img src="review1%20(2).PNG"></div>
@@ -108,38 +148,23 @@
     <section id="faq">
         <div class="container">
             <h2 class="section-title">FAQ</h2>
-            <p class="section-subtitle">常見問題解答</p>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-q">實體課的上課地點在哪裡？ <span class="faq-icon">+</span></div>
-                    <div class="faq-a">實體訓練主要位於 Markham 及 Richmond Hill 地區。我們會根據您的便利性，在諮詢時確認具體的健身房地點。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">完全沒有健身經驗適合參加嗎？ <span class="faq-icon">+</span></div>
-                    <div class="faq-a">非常適合。很多學員都是從零開始。我們會由最基礎的動作控制、正確呼吸以及發力感教起，確保您在安全的基礎上建立自信。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">每週建議訓練多少次？ <span class="faq-icon">+</span></div>
-                    <div class="faq-a">視乎您的目標和日程。一般建議每週 2-3 次實體訓練，配合非訓練日的活動，以達到最佳的身體轉變效果。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">是否提供飲食計劃？ <span class="faq-icon">+</span></div>
-                    <div class="faq-a">是的。三分練七分吃，我會根據您的體組成數據（如體脂率、肌肉量）提供科學的宏觀營養建議（蛋白質、脂肪、碳水比例），而非單純叫您捱餓。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">收費模式是怎樣的？ <span class="faq-icon">+</span></div>
-                    <div class="faq-a">我們提供靈活的課時套餐（Package），分為一對一或一對二。詳細報價會在完成初步諮詢及評估後提供，確保方案最適合您的需求。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">訓練多長時間才能看到明顯成效？ <span class="faq-icon">+</span></div>
-                    <div class="faq-a">每個人的身體狀況不同，但通常堅持 4-8 週後，您會明顯感受到體能提升和身形變化。我們更注重長遠且可持續的轉變，而非短期極端節食。</div>
-                </div>
+            <div class="faq-item">
+                <div class="faq-q">沒有運動習慣的女性適合嗎？ <span class="faq-icon">+</span></div>
+                <div class="faq-a">絕對適合。我的學員中有 80% 曾是零基礎女性。我們會透過 Corrective Exercise 先優化關節活動度，再循序漸進增加強度。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">實體上課地點？ <span class="faq-icon">+</span></div>
+                <div class="faq-a">主要於 Markham 及 Richmond Hill 地區。具體地點會根據您的交通便利性在諮詢時確認。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">一定要節食嗎？ <span class="faq-icon">+</span></div>
+                <div class="faq-a">不建議極端節食。我會根據您的身體數據提供營養建議，教您如何「吃得飽且吃得對」，這才是長期維持體態的關鍵。</div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 60px 0; text-align: center; color: var(--apple-grey); font-size: 14px; border-top: 1px solid #eee;">
-        <p>&copy; 2026 Coach Ming Toronto. All Rights Reserved. | Contact: +1 437-663-0425</p>
+    <footer style="padding: 60px 0; text-align: center; color: var(--apple-grey); font-size: 13px;">
+        <p>&copy; 2026 Coach Ming Toronto. | Specialized in Women's Fitness & Corrective Exercise</p>
     </footer>
 
     <a href="https://wa.me/14376630425" class="whatsapp-btn" target="_blank">
