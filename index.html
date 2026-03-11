@@ -24,17 +24,16 @@
         .hero .slogan-cn { font-size: 26px; font-weight: 600; margin: 20px 0 10px; color: var(--apple-black); }
         .hero .slogan-en { font-size: 18px; color: var(--apple-grey); margin-bottom: 40px; }
         .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .service-card { background: var(--apple-light); padding: 40px; border-radius: 24px; }
+        .service-card { background: var(--apple-light); padding: 40px; border-radius: 24px; transition: 0.3s; }
         .service-card h3 { font-size: 22px; margin: 0; color: var(--apple-black); }
         .service-card .en-title { font-size: 14px; color: var(--accent-blue); font-weight: 600; margin-bottom: 20px; text-transform: uppercase; display: block; }
         .service-card ul { padding: 0; list-style: none; color: #444; font-size: 15px; }
         .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
         .service-card li::before { content: "•"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .photo-card { border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.06); background: #eee; min-height: 200px; }
+        .photo-card { border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.06); background: #fff; }
         .photo-card img { width: 100%; display: block; height: auto; }
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 2000; }
-        @media (max-width: 600px) { .hero h1 { font-size: 36px; } }
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 2000; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -58,21 +57,21 @@
 
     <section id="services" style="background: var(--apple-light);">
         <div class="container">
-            <h2 class="section-title">Training Programs</h2>
+            <h2 class="section-title">Programs</h2>
             <div class="service-grid">
                 <div class="service-card">
                     <h3>一對一私人訓練</h3>
-                    <span class="en-title">1-on-1 Personal Training</span>
+                    <span class="en-title">1-on-1 Training</span>
                     <ul>
                         <li>個人化目標定制計劃 (Tailored plans)</li>
-                        <li>高專注度動作糾正 (Form correction)</li>
+                        <li>全程專注動作細節 (Form focus)</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>一對二小組訓練</h3>
-                    <span class="en-title">1-on-2 Semi-Private</span>
+                    <span class="en-title">1-on-2 Training</span>
                     <ul>
-                        <li>與伴侶或親友共同訓練 (Train with a partner)</li>
+                        <li>與伴侶或親友共同進步 (Partner up)</li>
                         <li>高性價比方案 (Cost-effective)</li>
                     </ul>
                 </div>
@@ -80,8 +79,8 @@
                     <h3>線上遠程指導</h3>
                     <span class="en-title">Online Coaching</span>
                     <ul>
-                        <li>突破地域限制 (Global access)</li>
-                        <li>每週課表與飲食建議 (Weekly plans)</li>
+                        <li>突破地理位置限制 (Global access)</li>
+                        <li>科學化飲食建議 (Nutrition plans)</li>
                     </ul>
                 </div>
             </div>
@@ -92,12 +91,12 @@
         <div class="container">
             <h2 class="section-title">Student Results</h2>
             <div class="photo-grid">
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/result1%20(1).JPEG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/result1%20(2).JPEG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/result1%20(3).JPEG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/result1%20(4).JPEG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/result1%20(5).JPEG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/result1%20(6).JPEG"></div>
+                <div class="photo-card"><img src="result1%20(1).JPEG"></div>
+                <div class="photo-card"><img src="result1%20(2).JPEG"></div>
+                <div class="photo-card"><img src="result1%20(3).JPEG"></div>
+                <div class="photo-card"><img src="result1%20(4).JPEG"></div>
+                <div class="photo-card"><img src="result1%20(5).JPEG"></div>
+                <div class="photo-card"><img src="result1%20(6).JPEG"></div>
             </div>
         </div>
     </section>
@@ -106,9 +105,9 @@
         <div class="container">
             <h2 class="section-title">Success Stories</h2>
             <div class="photo-grid">
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/IMG_9273.PNG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/IMG_9275.PNG"></div>
-                <div class="photo-card"><img src="iCloud%20%E7%9B%B8%E7%89%87/IMG_9277.PNG"></div>
+                <div class="photo-card"><img src="IMG_9273.PNG"></div>
+                <div class="photo-card"><img src="IMG_9275.PNG"></div>
+                <div class="photo-card"><img src="IMG_9277.PNG"></div>
             </div>
         </div>
     </section>
