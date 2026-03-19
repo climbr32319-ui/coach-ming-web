@@ -162,7 +162,118 @@
             </div>
         </div>
     </section>
+<section id="training-clips" style="background: #fff; padding-bottom: 90px;">
+    <div class="container">
+        <h2 class="section-title">Training Clips / 訓練實況</h2>
+        <p class="section-subtitle">直擊最真實的訓練過程 / Real-time training sessions</p>
+        
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/xjAEg3CDZ78?autoplay=1&mute=1&loop=1&playlist=xjAEg3CDZ78&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">動作細節糾正 / Detail Correction</div>
+            </div>
 
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/S--c0LKbjkc?autoplay=1&mute=1&loop=1&playlist=S--c0LKbjkc&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">下肢力量訓練 / Lower Body Power</div>
+            </div>
+
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/M7jBJR961X0?autoplay=1&mute=1&loop=1&playlist=M7jBJR961X0&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">核心穩定練習 / Core Stability</div>
+            </div>
+
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/d_saaYcApks?autoplay=1&mute=1&loop=1&playlist=d_saaYcApks&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">體態優化指導 / Posture Optimization</div>
+            </div>
+
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/OR4_2CfOUT8?autoplay=1&mute=1&loop=1&playlist=OR4_2CfOUT8&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">高效增肌訓練 / Hypertrophy Training</div>
+            </div>
+
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/hBQuXqfCPeg?autoplay=1&mute=1&loop=1&playlist=hBQuXqfCPeg&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">阻力訓練指導 / Resistance Training</div>
+            </div>
+
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/1fmRN8tFq7M?autoplay=1&mute=1&loop=1&playlist=1fmRN8tFq7M&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">動作幅展訓練 / Mobility Drills</div>
+            </div>
+
+            <div class="video-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/6vXBF7c8u_I?autoplay=1&mute=1&loop=1&playlist=6vXBF7c8u_I&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                </div>
+                <div class="video-label">科學化減脂課程 / Science-based Fat Loss</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    .video-card {
+        background: #000;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 177.78%; /* 9:16 直向比例 */
+        height: 0;
+        pointer-events: none; /* 隱藏點擊干擾，模擬背景影片 */
+    }
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.1); /* 稍微放大以完美遮蓋 YouTube 邊界 */
+    }
+    .video-label {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        color: #fff;
+        padding: 15px 10px;
+        z-index: 10;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+    }
+    @media (max-width: 600px) {
+        .video-grid {
+            grid-template-columns: repeat(2, 1fr); /* 手機版每行兩條片，方便查看 */
+            gap: 12px;
+        }
+    }
+</style>
     <section id="faq">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 40px;">FAQ / 常見問題</h2>
