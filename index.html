@@ -197,58 +197,104 @@
     <section id="fitness-tools" style="background: #fff;">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">Fitness Toolbox / 健身工具箱</h2>
-            <p style="text-align: center; color: var(--apple-grey); margin-bottom: 30px;">科學化數據分析，助你精準達成目標</p>
+            <p style="text-align: center; color: var(--apple-grey); margin-bottom: 30px;">Professional calculation for your goals / 科學化數據分析</p>
             
             <div style="max-width: 800px; margin: 0 auto; background: var(--apple-light); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <div style="display: flex; background: #e5e5e7; padding: 5px;">
-                    <button onclick="openTool(event, 'tdee-tool')" class="tablinks active" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:14px;">熱量 TDEE</button>
-                    <button onclick="openTool(event, 'goal-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:14px;">理想體重</button>
-                    <button onclick="openTool(event, 'strength-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:14px;">力量 1RM</button>
+                    <button onclick="openTool(event, 'tdee-tool')" class="tablinks active" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:13px;">熱量 TDEE / Calories</button>
+                    <button onclick="openTool(event, 'goal-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:13px;">目標體重 / Body Goal</button>
+                    <button onclick="openTool(event, 'strength-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:13px;">力量 / 1RM Strength</button>
                 </div>
 
                 <div style="padding: 30px; background: var(--apple-light);">
                     <div id="tdee-tool" class="tabcontent" style="display: block;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <input type="number" id="w1" placeholder="體重 (kg)" style="padding:12px; border-radius:12px; border:1px solid #ddd; outline:none;">
-                            <input type="number" id="h1" placeholder="身高 (cm)" style="padding:12px; border-radius:12px; border:1px solid #ddd; outline:none;">
-                            <input type="number" id="a1" placeholder="年齡" style="padding:12px; border-radius:12px; border:1px solid #ddd; outline:none;">
-                            <select id="g1" style="padding:12px; border-radius:12px; border:1px solid #ddd; background:white;"><option value="male">男 Male</option><option value="female">女 Female</option></select>
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Weight / 體重 (kg)</label>
+                                <input type="number" id="w1" placeholder="70" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; box-sizing:border-box;">
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Height / 身高 (cm)</label>
+                                <input type="number" id="h1" placeholder="175" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; box-sizing:border-box;">
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Age / 年齡</label>
+                                <input type="number" id="a1" placeholder="25" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; box-sizing:border-box;">
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Gender / 性別</label>
+                                <select id="g1" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; background:white;">
+                                    <option value="male">Male / 男</option>
+                                    <option value="female">Female / 女</option>
+                                </select>
+                            </div>
                         </div>
+                        <label style="font-size:12px; color:var(--apple-grey);">Activity Level / 每週運動量</label>
                         <select id="act1" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; margin-bottom:15px; background:white;">
-                            <option value="1.2">久坐 (幾乎不運動)</option>
-                            <option value="1.375">輕度 (每週 1-3 天)</option>
-                            <option value="1.55">中度 (每週 3-5 天)</option>
-                            <option value="1.725">高度 (每週 6-7 天)</option>
-                            <option value="1.9">極高 (專業運動/體力勞動)</option>
+                            <option value="1.2">Sedentary / 久坐 (Office Job)</option>
+                            <option value="1.375">Lightly Active / 輕度 (1-3 days/week)</option>
+                            <option value="1.55">Moderately Active / 中度 (3-5 days/week)</option>
+                            <option value="1.725">Very Active / 高度 (6-7 days/week)</option>
+                            <option value="1.9">Extra Active / 極高強度</option>
                         </select>
-                        <button onclick="calcTDEE()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">計算 TDEE & 蛋白質</button>
-                        <div id="res1" style="margin-top:20px; display:none; text-align:center; padding:15px; background:#fff; border-radius:15px;">
-                            <span style="font-size:13px; color:var(--apple-grey);">維持體重熱量:</span> <b id="tdee-val" style="color:var(--accent-blue); font-size:20px;"></b><br>
-                            <span style="font-size:13px; color:var(--apple-grey);">減脂蛋白質建議:</span> <b id="prot-val" style="color:var(--success-green); font-size:20px;"></b>
+                        <button onclick="calcTDEE()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">Calculate / 開始計算</button>
+                        
+                        <div id="res1" style="margin-top:20px; display:none; padding:20px; background:#fff; border-radius:15px;">
+                            <div style="text-align:center; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:15px;">
+                                <span style="font-size:13px; color:var(--apple-grey);">Maintenance Calories / 維持熱量 (TDEE):</span><br>
+                                <b id="tdee-val" style="color:var(--accent-blue); font-size:24px;"></b>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div style="background: #f0f9ff; padding: 10px; border-radius: 10px;">
+                                    <span style="font-size:12px; color:#0071e3; font-weight:600;">Fat Loss / 減脂 (-500)</span><br>
+                                    <b id="loss-val" style="font-size:18px;"></b>
+                                </div>
+                                <div style="background: #f0fff4; padding: 10px; border-radius: 10px;">
+                                    <span style="font-size:12px; color:#25d366; font-weight:600;">Muscle Gain / 增肌 (+300)</span><br>
+                                    <b id="gain-val" style="font-size:18px;"></b>
+                                </div>
+                            </div>
+                            <div style="margin-top:15px; text-align:center; background:#f5f5f7; padding:10px; border-radius:10px;">
+                                <span style="font-size:12px; color:var(--apple-grey);">Daily Protein / 建議蛋白質:</span><br>
+                                <b id="prot-val" style="color:var(--apple-black); font-size:18px;"></b>
+                            </div>
                         </div>
                     </div>
 
                     <div id="goal-tool" class="tabcontent" style="display: none;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <input type="number" id="w2" placeholder="現時體重 (kg)" style="padding:12px; border-radius:12px; border:1px solid #ddd;">
-                            <input type="number" id="bf2" placeholder="現時體脂 %" style="padding:12px; border-radius:12px; border:1px solid #ddd;">
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Current Weight / 現時體重 (kg)</label>
+                                <input type="number" id="w2" placeholder="80" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Current BF% / 現時體脂 %</label>
+                                <input type="number" id="bf2" placeholder="25" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
+                            </div>
                         </div>
-                        <input type="number" id="tbf2" placeholder="目標體脂 % (例: 男 12 / 女 20)" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; margin-bottom:15px;">
-                        <button onclick="calcGoal()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">預估目標體重</button>
+                        <label style="font-size:12px; color:var(--apple-grey);">Target BF% / 目標體脂 %</label>
+                        <input type="number" id="tbf2" placeholder="e.g. 12" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; margin-bottom:15px; box-sizing:border-box;">
+                        <button onclick="calcGoal()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">Calculate Goal / 預估目標</button>
                         <div id="res2" style="margin-top:20px; display:none; text-align:center; padding:15px; background:#fff; border-radius:15px;">
-                            <span style="font-size:13px; color:var(--apple-grey);">理想目標體重:</span> <b id="gw-val" style="color:var(--accent-blue); font-size:20px;"></b><br>
+                            <span style="font-size:13px; color:var(--apple-grey);">Ideal Weight / 目標體重:</span> <b id="gw-val" style="color:var(--accent-blue); font-size:20px;"></b><br>
                             <span id="fat-val" style="color:var(--success-green); font-size:14px; font-weight:600;"></span>
                         </div>
                     </div>
 
                     <div id="strength-tool" class="tabcontent" style="display: none;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <input type="number" id="w3" placeholder="負重 (kg/lb)" style="padding:12px; border-radius:12px; border:1px solid #ddd;">
-                            <input type="number" id="r3" placeholder="重複次數 (Reps)" style="padding:12px; border-radius:12px; border:1px solid #ddd;">
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Weight / 負重 (kg/lb)</label>
+                                <input type="number" id="w3" placeholder="100" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--apple-grey);">Reps / 次數</label>
+                                <input type="number" id="r3" placeholder="5" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
+                            </div>
                         </div>
-                        <button onclick="calc1RM()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">預估最大重量 1RM</button>
+                        <button onclick="calc1RM()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">Calculate 1RM / 預估最大重量</button>
                         <div id="res3" style="margin-top:20px; display:none; text-align:center; padding:15px; background:#fff; border-radius:15px;">
-                            <span style="font-size:13px; color:var(--apple-grey);">你的預估 1RM：</span><br>
+                            <span style="font-size:13px; color:var(--apple-grey);">Estimated 1RM / 預估 1RM:</span><br>
                             <b id="rm-val" style="font-size:32px; color:var(--apple-black);"></b>
                         </div>
                     </div>
@@ -282,10 +328,13 @@
             const act = parseFloat(document.getElementById('act1').value);
             if (w && h && a) {
                 let bmr = (g === 'male') ? (10 * w + 6.25 * h - 5 * a + 5) : (10 * w + 6.25 * h - 5 * a - 161);
-                document.getElementById('tdee-val').innerText = Math.round(bmr * act) + " kcal";
-                document.getElementById('prot-val').innerText = Math.round(w * 1.8) + " g";
+                let tdee = Math.round(bmr * act);
+                document.getElementById('tdee-val').innerText = tdee + " kcal";
+                document.getElementById('loss-val').innerText = (tdee - 500) + " kcal";
+                document.getElementById('gain-val').innerText = (tdee + 300) + " kcal";
+                document.getElementById('prot-val').innerText = Math.round(w * 1.8) + " g / Day";
                 document.getElementById('res1').style.display = 'block';
-            } else { alert("請填寫所有欄位"); }
+            } else { alert("Please fill all fields / 請填寫所有欄位"); }
         }
 
         function calcGoal() {
@@ -295,9 +344,9 @@
             if (w && cb && tb) {
                 const gw = Math.round(w * (1 - cb) / (1 - tb) * 10) / 10;
                 document.getElementById('gw-val').innerText = gw + " kg";
-                document.getElementById('fat-val').innerText = "需減去約 " + Math.round((w - gw) * 10) / 10 + " kg 脂肪";
+                document.getElementById('fat-val').innerText = "Lose approx. / 需減去約 " + Math.round((w - gw) * 10) / 10 + " kg Pure Fat";
                 document.getElementById('res2').style.display = 'block';
-            } else { alert("請填寫所有欄位"); }
+            } else { alert("Please fill all fields / 請填寫所有欄位"); }
         }
 
         function calc1RM() {
@@ -307,36 +356,7 @@
                 const rm = Math.round(w * (1 + r / 30)); 
                 document.getElementById('rm-val').innerText = rm;
                 document.getElementById('res3').style.display = 'block';
-            } else { alert("請填寫所有欄位"); }
-        }
-    </script>
-
-    <script>
-        function calculateFitness() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const height = parseFloat(document.getElementById('height').value);
-            const age = parseFloat(document.getElementById('age').value);
-            const gender = document.getElementById('gender').value;
-
-            if (weight && height && age) {
-                let bmr;
-                if (gender === 'male') {
-                    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-                } else {
-                    bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-                }
-                const tdee = Math.round(bmr * 1.375);
-                const protein = Math.round(weight * 1.8);
-
-                document.getElementById('tdee-val').innerText = tdee + " kcal";
-                document.getElementById('protein-val').innerText = protein + " g";
-                document.getElementById('calc-result').style.display = 'block';
-                
-                // 自動捲動到結果位置
-                document.getElementById('calc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                alert('請填寫所有欄位 Please fill in all fields');
-            }
+            } else { alert("Please fill all fields / 請填寫所有欄位"); }
         }
     </script>
     <section id="location" style="background: var(--apple-light);">
