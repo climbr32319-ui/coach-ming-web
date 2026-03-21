@@ -18,10 +18,10 @@
         section { padding: 80px 0; width: 100%; box-sizing: border-box; }
         
         /* 導航 - 中英對照 */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        nav .container { display: flex; justify-content: center; gap: clamp(10px, 3vw, 30px); }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        nav .container { display: flex; justify-content: center; gap: clamp(10px, 3vw, 25px); }
         nav a { text-decoration: none; color: var(--apple-black); font-size: 13px; font-weight: 500; text-align: center; line-height: 1.2; }
-        nav a span { display: block; font-size: 10px; color: var(--apple-grey); text-transform: uppercase; }
+        nav a span { display: block; font-size: 9px; color: var(--apple-grey); text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Hero */
         .hero { padding: clamp(140px, 20vh, 200px) 0 100px; text-align: center; }
@@ -39,39 +39,35 @@
         .badge-text b { display: block; font-size: 16px; margin-bottom: 4px; }
         .badge-text small { color: var(--apple-grey); font-size: 13px; line-height: 1.4; display: block; }
 
-        /* 課程卡片懸浮效果 */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .service-card { background: #fff; padding: 50px 35px; border-radius: 28px; border: 1px solid rgba(0,0,0,0.06); transition: all 0.4s; cursor: pointer; }
-        .service-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.1); border-color: var(--accent-blue); }
+        /* 訓練課程 - 四欄佈局 */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 50px; }
+        .service-card { background: #fff; padding: 40px 25px; border-radius: 28px; border: 1px solid rgba(0,0,0,0.06); transition: all 0.4s; cursor: pointer; }
+        .service-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); border-color: var(--accent-blue); }
+        .service-card h3 { font-size: clamp(18px, 4vw, 22px); margin: 0 0 8px; }
+        .service-card .en-title { font-size: 11px; color: var(--accent-blue); font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .service-card ul { padding: 0; list-style: none; }
+        .service-card li { margin-bottom: 12px; color: #4b4b4d; font-size: 14px; display: flex; align-items: center; }
+        .service-card li::before { content: "●"; font-size: 7px; color: var(--accent-blue); margin-right: 10px; }
 
         /* 學員成果 - 無漏白 */
         .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 40px; }
         .photo-card { border-radius: 14px; overflow: hidden; background: #000; transition: all 0.4s; aspect-ratio: 1 / 1; }
-        .photo-card:hover { transform: scale(1.05); z-index: 5; }
         .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* 訓練影片 - 8條影片全顯示 */
+        /* 訓練影片 */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .video-card { border-radius: 24px; overflow: hidden; background: #000; position: relative; transition: transform 0.3s; }
-        .video-card:hover { transform: scale(1.02); }
+        .video-card { border-radius: 24px; overflow: hidden; background: #000; position: relative; }
         .iframe-container { position: relative; width: 100%; padding-bottom: 177.78%; height: 0; overflow: hidden; }
         .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 
         /* FAQ */
-        .faq-item { border-bottom: 1px solid #eee; padding: 25px 10px; cursor: pointer; transition: all 0.2s; }
-        .faq-item:hover { background: #fbfbfb; padding-left: 15px; }
+        .faq-item { border-bottom: 1px solid #eee; padding: 25px 10px; cursor: pointer; }
         .faq-q { font-size: 17px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .faq-a { display: none; padding-top: 18px; color: var(--apple-grey); font-size: 15px; line-height: 1.8; }
         .faq-item.active .faq-a { display: block; }
 
         /* WhatsApp */
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: var(--success-green); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 10px 25px rgba(37,211,102,0.3); transition: all 0.3s; }
-        .whatsapp-btn:hover { transform: scale(1.15); }
-
-        @media (max-width: 768px) {
-            .results-grid { grid-template-columns: repeat(2, 1fr); }
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: var(--success-green); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 10px 25px rgba(37,211,102,0.3); transition: 0.3s; }
     </style>
 </head>
 <body>
@@ -81,7 +77,7 @@
             <a href="#about">專業背景<span>Background</span></a>
             <a href="#services">訓練課程<span>Programs</span></a>
             <a href="#results">學員成果<span>Results</span></a>
-            <a href="#training">影片實況<span>Training</span></a>
+            <a href="#training">訓練實況<span>Training</span></a>
             <a href="#faq">常見問題<span>FAQ</span></a>
         </div>
     </nav>
@@ -91,7 +87,7 @@
             <h1>Movement Perfection,<br>Body Transformation.</h1>
             <p class="slogan-cn">精準動作，體態蛻變</p>
             <p class="slogan-en">Coach Ming | Toronto Professional Fitness Coach</p>
-            <a href="https://wa.me/14376630425" class="cta-btn">預約免費諮詢 / Book Free Consultation</a>
+            <a href="https://wa.me/14376630425" class="cta-btn">預約免費諮詢 / Book Consultation</a>
         </div>
     </header>
 
@@ -103,7 +99,7 @@
                     <div class="badge-item"><span class="badge-icon">👑</span><div class="badge-text"><b>Official Pageant Coach</b><small>2024-2025 多倫多華裔小姐競選官方健身教練</small></div></div>
                     <div class="badge-item"><span class="badge-icon">📜</span><div class="badge-text"><b>NCSF CPT & CES</b><small>NCSF 認證私人教練及糾正性訓練專家</small></div></div>
                     <div class="badge-item"><span class="badge-icon">👩🏻</span><div class="badge-text"><b>5+ Years Women's Fitness</b><small>超過五年女性專項體態雕塑指導經驗</small></div></div>
-                    <div class="badge-item"><span class="badge-icon">👨‍🦳</span><div class="badge-text"><b>UHN TIME™ Teaching Experience</b><small>具備 UHN TIME™ 長者平衡及防跌教學經驗</small></div></div>
+                    <div class="badge-item"><span class="badge-icon">👨‍🦳</span><div class="badge-text"><b>UHN TIME™ Experience</b><small>具備 UHN TIME™ 長者平衡及防跌教學經驗</small></div></div>
                 </div>
             </div>
         </div>
@@ -115,6 +111,7 @@
             <div class="service-grid">
                 <div class="service-card"><h3>一對一私人訓練</h3><span class="en-title">1-on-1 Training</span><ul><li>專屬動作修正與指導</li><li>個人化飲食營養建議</li><li>高隱私度專注訓練</li></ul></div>
                 <div class="service-card"><h3>一對二小組訓練</h3><span class="en-title">1-on-2 Training</span><ul><li>與親友伴侶共同訓練</li><li>互相激勵共同進步</li><li>高性價比訓練組合</li></ul></div>
+                <div class="service-card"><h3>一對三 / 四訓練</h3><span class="en-title">1-on-3 / 1-on-4</span><ul><li>適合多位親友參與</li><li>團體動力激發潛能</li><li>最經濟的訓練選擇</li></ul></div>
                 <div class="service-card"><h3>線上遠程指導</h3><span class="en-title">Online Coaching</span><ul><li>每週訓練計劃更新</li><li>動作影片詳細分析</li><li>突破地域及時間限制</li></ul></div>
             </div>
         </div>
@@ -135,14 +132,14 @@
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 40px;">Training Clips / 訓練實況</h2>
             <div class="video-grid">
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/xjAEg3CDZ78?autoplay=1&mute=1&loop=1&playlist=xjAEg3CDZ78&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/S--c0LKbjkc?autoplay=1&mute=1&loop=1&playlist=S--c0LKbjkc&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/M7jBJR961X0?autoplay=1&mute=1&loop=1&playlist=M7jBJR961X0&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/d_saaYcApks?autoplay=1&mute=1&loop=1&playlist=d_saaYcApks&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/iMS1TinMu54?autoplay=1&mute=1&loop=1&playlist=iMS1TinMu54&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/hBQuXqfCPeg?autoplay=1&mute=1&loop=1&playlist=hBQuXqfCPeg&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/1fmRN8tFq7M?autoplay=1&mute=1&loop=1&playlist=1fmRN8tFq7M&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
-                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/6vXBF7c8u_I?autoplay=1&mute=1&loop=1&playlist=6vXBF7c8u_I&playsinline=1&controls=0&modestbranding=1" allow="autoplay; encrypted-media"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/xjAEg3CDZ78?autoplay=1&mute=1&loop=1&playlist=xjAEg3CDZ78&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/S--c0LKbjkc?autoplay=1&mute=1&loop=1&playlist=S--c0LKbjkc&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/M7jBJR961X0?autoplay=1&mute=1&loop=1&playlist=M7jBJR961X0&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/d_saaYcApks?autoplay=1&mute=1&loop=1&playlist=d_saaYcApks&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/iMS1TinMu54?autoplay=1&mute=1&loop=1&playlist=iMS1TinMu54&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/hBQuXqfCPeg?autoplay=1&mute=1&loop=1&playlist=hBQuXqfCPeg&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/1fmRN8tFq7M?autoplay=1&mute=1&loop=1&playlist=1fmRN8tFq7M&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
+                <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/6vXBF7c8u_I?autoplay=1&mute=1&loop=1&playlist=6vXBF7c8u_I&playsinline=1&controls=0&modestbranding=1"></iframe></div></div>
             </div>
         </div>
     </section>
@@ -152,25 +149,20 @@
             <h2 style="text-align: center; margin-bottom: 40px;">FAQ / 常見問題</h2>
             <div class="faq-item">
                 <div class="faq-q">上課地點在哪裡？ / Where are the sessions held? <span>+</span></div>
-                <div class="faq-a">主要於多倫多地區的健身房進行，特別是 Markham 及 Richmond Hill 區域。具體地點將於諮詢時確認。<br>Mainly held in Toronto area gyms (Markham/Richmond Hill). Exact locations will be confirmed during consultation.</div>
+                <div class="faq-a">主要於多倫多地區的健身房進行， 特別是 Markham 區域。<br>Sessions are held in Toronto area gyms, primarily in Markham and Richmond Hill.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">新手適合參加訓練嗎？ / Are the sessions suitable for beginners? <span>+</span></div>
-                <div class="faq-a">非常適合。我會從基礎的呼吸模式及核心穩定性開始教學，確保動作安全且有效。<br>Absolutely. I start with fundamental breathing and core stability to ensure all movements are safe and effective.</div>
-          <div class="faq-item">
-    <div class="faq-q">大約多久可以看到體態的變化？ / How long will it take to see results? <span>+</span></div>
-    <div class="faq-a">
-        體態的改變取決於個人的起始點與目標。通常在配合建議的飲食方案與規律訓練下，學員在 4 至 8 週內會明顯感受到力量提升與身型的初步改善。<br>
-        Results depend on your starting point and goals. Most students see noticeable improvements in strength and body composition within 4 to 8 weeks.
-    </div>
-</div>
-<div class="faq-item">
-    <div class="faq-q">如果我有舊患或姿勢不正，適合參加訓練嗎？ / Can I train with old injuries? <span>+</span></div>
-    <div class="faq-a">
-        非常適合。作為糾正性訓練專家，我會在開始前進行動作評估，優先優化您的關節活動度與發力模式，在保障安全的前提下建立力量。<br>
-        Absolutely. As a Corrective Exercise Specialist, I prioritize movement assessments to ensure we build strength safely and effectively.
-    </div>
-</div>
+                <div class="faq-a">非常適合。我會從基礎的呼吸模式及核心穩定性開始教學，確保動作安全有效。<br>Absolutely. I start with fundamental breathing and core stability to ensure safety and effectiveness.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">多久可以看到體態變化？ / How long will it take to see results? <span>+</span></div>
+                <div class="faq-a">配合建議飲食與規律訓練，通常在 4 至 8 週內會有明顯的體態改善。<br>With consistent training and nutrition, most students see noticeable changes within 4 to 8 weeks.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">有舊患或姿勢不正適合嗎？ / Can I train with old injuries? <span>+</span></div>
+                <div class="faq-a">適合。作為糾正性訓練專家，我會優先優化您的關節活動度與發力模式。<br>As a Corrective Exercise Specialist, I prioritize optimizing your mobility and movement patterns.</div>
+            </div>
         </div>
     </section>
 
@@ -183,11 +175,8 @@
     </a>
 
     <script>
-        // FAQ Toggle
         document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
+            item.addEventListener('click', () => item.classList.toggle('active'));
         });
     </script>
 </body>
