@@ -145,21 +145,40 @@
                 </div>
             </div>
         </div>
-    </section>
-</section> <section id="reviews" style="background: var(--apple-light);">
+   <section id="reviews" style="background: var(--apple-light);">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">Client Reviews / 學員評價</h2>
             <p style="text-align: center; color: var(--apple-grey); margin-bottom: 40px; font-size: 14px;">真實學員反饋與對話紀錄</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                <div class="photo-card" style="aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"><img src="pt review (1).JPEG" style="width: 100%; display: block;"></div>
-                <div class="photo-card" style="aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"><img src="pt review (2).JPEG" style="width: 100%; display: block;"></div>
-                <div class="photo-card" style="aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"><img src="pt review (3).JPEG" style="width: 100%; display: block;"></div>
-                <div class="photo-card" style="aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"><img src="pt review (4).JPEG" style="width: 100%; display: block;"></div>
-                <div class="photo-card" style="aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"><img src="pt review (5).JPEG" style="width: 100%; display: block;"></div>
-                <div class="photo-card" style="aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"><img src="pt review (6).JPEG" style="width: 100%; display: block;"></div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+                    <img src="pt review (1).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
+                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+                    <img src="pt review (2).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
+                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+                    <img src="pt review (3).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
+                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+                    <img src="pt review (4).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
+                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+                    <img src="pt review (5).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
+                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+                    <img src="pt review (6).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
             </div>
         </div>
+        
+        <style>
+            @media (max-width: 768px) {
+                #reviews .container > div {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+            }
+        </style>
     </section>
 
     <section id="training" style="background: var(--apple-light);">
@@ -415,7 +434,7 @@
                     <div class="faq-a">這取決於您的個人目標。如果您需要高度精緻的動作糾正、個人化飲食指導，一對一私人訓練效果最顯著。如果您希望與朋友共同進步並降低預算，小組訓練則是理想選擇。<div class="faq-a-en">It depends on your goals. 1-on-1 is best for precise correction and personalized dieting. Group training is ideal for progressing with friends on a budget.</div></div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-q">我有舊患或長期痛症（如腰痛、膝頭痛），仲操唔操得？<span class="en-q">I have chronic pain, can I still train?</span></div>
+                    <div class="faq-q">我有舊患或長期痛症（如腰痛、膝頭痛），可以訓練嗎？<span class="en-q">I have chronic pain, can I still train?</span></div>
                     <div class="faq-a">絕對可以。我具備糾正性訓練背景，會先評估你的活動度，避開受傷風險，並透過加強弱勢肌肉來減輕痛症。<div class="faq-a-en">Absolutely. I use corrective exercise to assess mobility and strengthen key muscles to alleviate pain safely.</div></div>
                 </div>
                 <div class="faq-item">
