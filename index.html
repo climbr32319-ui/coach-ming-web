@@ -61,16 +61,12 @@
         .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         /* 訓練影片 */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .video-card { border-radius: 24px; overflow: hidden; background: #000; position: relative; }
+        .video-card { border-radius: 24px; overflow: hidden; background: #000; position: relative; transition: transform 0.3s ease; }
         .iframe-container { position: relative; width: 100%; padding-bottom: 177.78%; height: 0; overflow: hidden; }
-        .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+        .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* Instagram 嵌入區 */
         .ig-embed-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 40px; justify-items: center; }
-
-        /* 地圖 */
-        .map-box { border-radius: 30px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); height: 400px; margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
         /* FAQ */
         .faq-item { border-bottom: 1px solid #eee; padding: 25px 10px; cursor: pointer; }
@@ -79,48 +75,31 @@
         .faq-q::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--apple-grey); }
         .faq-item.active .faq-q::after { content: '-'; }
         .faq-a { display: none; padding-top: 18px; font-size: 15px; line-height: 1.8; color: #4b4b4d; }
-        .faq-a-en { color: var(--apple-grey); font-size: 14px; margin-top: 10px; border-top: 1px dashed #eee; padding-top: 10px; }
         .faq-item.active .faq-a { display: block; }
 
         /* Footer */
         footer { padding: 60px 0 40px; text-align: center; color: var(--apple-grey); font-size: 13px; background: var(--apple-light); }
-        .social-link { display: inline-flex; align-items: center; color: var(--apple-black); text-decoration: none; font-weight: 600; font-size: 18px; margin-bottom: 25px; transition: color 0.3s; }
-        .social-link:hover { color: var(--accent-blue); }
         .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: var(--success-green); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 10px 25px rgba(37,211,102,0.3); }
 
         @media (max-width: 768px) { .results-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* 工具箱標籤樣式 */
+        .tablinks.active { background: #fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .tabcontent { display: none; }
     </style>
 </head>
 <body>
 
- <nav style="position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 0.5px solid #d2d2d7;">
-        <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 70px; padding: 5px 0;">
-            <div class="nav-links" style="display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; align-items: center;">
-                <a href="#about" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    關於 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">ABOUT</span>
-                </a>
-                <a href="#course" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    課程 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">COURSES</span>
-                </a>
-                <a href="#results" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    成果 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">RESULTS</span>
-                </a>
-                <a href="#vlog" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    實況 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">VLOG</span>
-                </a>
-                <a href="#fitness-tools" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    工具 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">TOOLS</span>
-                </a>
-                <a href="#location" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    地點 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">LOCATION</span>
-                </a>
-                <a href="#faq" style="text-decoration:none; color:var(--apple-black); font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    問題 <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">FAQ</span>
-                </a>
-                <a href="https://www.instagram.com/ming_c_t/" target="_blank" style="text-decoration:none; color:#E1306C; font-size:14px; font-weight:600; text-align:center; line-height:1.2;">
-                    IG <br><span style="color:var(--apple-grey); font-weight:400; font-size:10px; letter-spacing:0.5px;">FOLLOW</span>
-                </a>
-            </div>
+    <nav>
+        <div class="container">
+            <a href="#about">關於<span>ABOUT</span></a>
+            <a href="#services">課程<span>COURSES</span></a>
+            <a href="#results">成果<span>RESULTS</span></a>
+            <a href="#reviews">評價<span>REVIEWS</span></a>
+            <a href="#vlog">實況<span>VLOG</span></a>
+            <a href="#fitness-tools">工具<span>TOOLS</span></a>
+            <a href="#faq">問題<span>FAQ</span></a>
+            <a href="https://www.instagram.com/ming_c_t/" target="_blank" style="color:#E1306C;">IG<span>FOLLOW</span></a>
         </div>
     </nav>
 
@@ -145,10 +124,8 @@
                 </div>
             </div>
         </div>
-   
+    </section>
 
-    <section id="training" style="background: var(--apple-light);">
-    ```
     <section id="services" style="background: var(--apple-light);">
         <div class="container">
             <h2 style="text-align: center;">Training Programs / 訓練課程</h2>
@@ -188,263 +165,120 @@
         </div>
     </section>
         
-        <section id="reviews" style="background: var(--apple-light);">
+    <section id="reviews" style="background: var(--apple-light);">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">Client Reviews / 學員評價</h2>
             <p style="text-align: center; color: var(--apple-grey); margin-bottom: 40px; font-size: 14px;">真實學員反饋與對話紀錄</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
-                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                    <img src="pt review (1).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </div>
-                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                    <img src="pt review (2).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </div>
-                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                    <img src="pt review (3).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </div>
-                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                    <img src="pt review (4).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </div>
-                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                    <img src="pt review (5).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </div>
-                <div class="photo-card" style="aspect-ratio: 3 / 4; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                    <img src="pt review (6).JPEG" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;" id="reviews-grid-box">
+                <div class="photo-card" style="aspect-ratio: 3/4; background:#fff;"><img src="pt review (1).JPEG" style="width:100%; height:100%; object-fit:contain;"></div>
+                <div class="photo-card" style="aspect-ratio: 3/4; background:#fff;"><img src="pt review (2).JPEG" style="width:100%; height:100%; object-fit:contain;"></div>
+                <div class="photo-card" style="aspect-ratio: 3/4; background:#fff;"><img src="pt review (3).JPEG" style="width:100%; height:100%; object-fit:contain;"></div>
+                <div class="photo-card" style="aspect-ratio: 3/4; background:#fff;"><img src="pt review (4).JPEG" style="width:100%; height:100%; object-fit:contain;"></div>
+                <div class="photo-card" style="aspect-ratio: 3/4; background:#fff;"><img src="pt review (5).JPEG" style="width:100%; height:100%; object-fit:contain;"></div>
+                <div class="photo-card" style="aspect-ratio: 3/4; background:#fff;"><img src="pt review (6).JPEG" style="width:100%; height:100%; object-fit:contain;"></div>
             </div>
         </div>
-        
         <style>
-            @media (max-width: 768px) {
-                #reviews .container > div {
-                    grid-template-columns: repeat(2, 1fr) !important;
-                }
-            }
+            @media (max-width: 768px) { #reviews-grid-box { grid-template-columns: repeat(2, 1fr) !important; } }
         </style>
     </section>
         
-  <section id="vlog" style="background: var(--apple-light); padding: 80px 0; overflow: hidden;">
+    <section id="vlog" style="background: #fff; padding: 80px 0; overflow: hidden;">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">Training Clips / 訓練實況</h2>
             <p style="text-align: center; color: var(--apple-grey); margin-bottom: 40px; font-size: 14px;">真實教學現場，見證專業指導</p>
-            
             <div class="video-slider" style="display: flex; overflow-x: auto; gap: 20px; padding-bottom: 25px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
-                
                 <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/9j5O6GQPAAw?autoplay=1&mute=1&loop=1&playlist=9j5O6GQPAAw&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">情侶雙人趣味訓練<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Couple Dynamic Workout</span></h3>
+                    <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/9j5O6GQPAAw?mute=1&loop=1&playlist=9j5O6GQPAAw" allow="autoplay; encrypted-media"></iframe></div></div>
+                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px;">情侶雙人趣味訓練</h3>
                 </div>
-
                 <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/n-fRw2haUvM?autoplay=1&mute=1&loop=1&playlist=n-fRw2haUvM&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">父子同行力量訓練<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Father & Son Strength</span></h3>
+                    <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/n-fRw2haUvM?mute=1&loop=1&playlist=n-fRw2haUvM" allow="autoplay; encrypted-media"></iframe></div></div>
+                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px;">父子同行力量訓練</h3>
                 </div>
-
                 <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/iyYgWlGRJlY?autoplay=1&mute=1&loop=1&playlist=iyYgWlGRJlY&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">銀髮族功能性防跌<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Senior Active Aging</span></h3>
+                    <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/iyYgWlGRJlY?mute=1&loop=1&playlist=iyYgWlGRJlY" allow="autoplay; encrypted-media"></iframe></div></div>
+                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px;">銀髮族功能性防跌</h3>
                 </div>
-
                 <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/hjS3ZEMCJzI?autoplay=1&mute=1&loop=1&playlist=hjS3ZEMCJzI&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">女性蜜桃臀雕塑<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Women's Glute Sculpting</span></h3>
+                    <div class="video-card"><div class="iframe-container"><iframe src="https://www.youtube.com/embed/hjS3ZEMCJzI?mute=1&loop=1&playlist=hjS3ZEMCJzI" allow="autoplay; encrypted-media"></iframe></div></div>
+                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px;">女性蜜桃臀雕塑</h3>
                 </div>
-
-                <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/W-FefBuJVTE?autoplay=1&mute=1&loop=1&playlist=W-FefBuJVTE&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">深層下肢力量訓練<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Lower Body Strength</span></h3>
-                </div>
-
-                <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/rAW8M-Mqu8Y?autoplay=1&mute=1&loop=1&playlist=rAW8M-Mqu8Y&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">女性進階力量訓練<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Advanced Power Build</span></h3>
-                </div>
-
-                <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/bNcLUe11rdY?autoplay=1&mute=1&loop=1&playlist=bNcLUe11rdY&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">女性直角肩線條<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Upper Body Definition</span></h3>
-                </div>
-
-                <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                    <div class="video-card" style="border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 177.78%;">
-                            <iframe src="https://www.youtube.com/embed/KGrz4om839c?autoplay=1&mute=1&loop=1&playlist=KGrz4om839c&controls=0&modestbranding=1&rel=0" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <h3 style="text-align: center; font-size: 16px; margin-top: 15px; font-weight: 600;">男性高效增肌指導<br><span style="font-size: 12px; color: var(--apple-grey); font-weight: 400;">Men's Muscle Hypertrophy</span></h3>
-                </div>
-
             </div>
-            <p style="text-align: center; color: var(--apple-grey); font-size: 12px; margin-top: 10px;">⬅️ 左右滑動查看所有實況 ➡️</p>
+            <p style="text-align: center; color: var(--apple-grey); font-size: 12px;">⬅️ 左右滑動查看所有實況 ➡️</p>
         </div>
-
         <style>
-            /* 隱藏滾動條但保留功能 */
             .video-slider::-webkit-scrollbar { display: none; }
             .video-slider { -ms-overflow-style: none; scrollbar-width: none; }
-            
-            /* 優化影片卡片在滑動時的質感 */
-            .video-card { transition: transform 0.3s ease; }
-            .video-card:active { transform: scale(0.98); }
         </style>
     </section>
-    <section id="instagram">
+
+    <section id="instagram" style="background: var(--apple-light);">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">Latest from Instagram / 最新動態</h2>
-            <p style="text-align: center; margin-bottom: 40px;"><a href="https://www.instagram.com/coachming_toronto?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 500;">Follow @coachming_toronto →</a></p>
-            
+            <p style="text-align: center; margin-bottom: 40px;"><a href="https://www.instagram.com/coachming_toronto" target="_blank" style="color: var(--accent-blue); text-decoration: none;">Follow @coachming_toronto →</a></p>
             <div class="ig-embed-container">
-                <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DUyBMTGDumw/" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; width:100%; max-width:320px;"></blockquote>
-                <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CdYazoJFUqd/" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; width:100%; max-width:320px;"></blockquote>
-                <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CdTPjL9lz3F/" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; width:100%; max-width:320px;"></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUyBMTGDumw/" data-instgrm-version="14" style="width:100%; max-width:320px;"></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/CdYazoJFUqd/" data-instgrm-version="14" style="width:100%; max-width:320px;"></blockquote>
             </div>
             <script async src="//www.instagram.com/embed.js"></script>
         </div>
+    </section>
+
     <section id="fitness-tools" style="background: #fff;">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">Fitness Toolbox / 健身工具箱</h2>
-            <p style="text-align: center; color: var(--apple-grey); margin-bottom: 30px;">Professional calculation for your goals / 科學化數據分析</p>
-            
-            <div style="max-width: 800px; margin: 0 auto; background: var(--apple-light); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <div style="max-width: 800px; margin: 0 auto; background: var(--apple-light); border-radius: 30px; overflow: hidden;">
                 <div style="display: flex; background: #e5e5e7; padding: 5px;">
-                    <button onclick="openTool(event, 'tdee-tool')" class="tablinks active" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:13px;">熱量 TDEE / Calories</button>
-                    <button onclick="openTool(event, 'goal-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:13px;">目標體重 / Body Goal</button>
-                    <button onclick="openTool(event, 'strength-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer; font-weight:600; transition:0.3s; font-size:13px;">力量 / 1RM Strength</button>
+                    <button onclick="openTool(event, 'tdee-tool')" class="tablinks active" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer;">熱量 TDEE</button>
+                    <button onclick="openTool(event, 'goal-tool')" class="tablinks" style="flex:1; padding:12px; border:none; border-radius:12px; cursor:pointer;">目標體重</button>
                 </div>
-
-                <div style="padding: 30px; background: var(--apple-light);">
-                    <div id="tdee-tool" class="tabcontent" style="display: block;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Weight / 體重 (kg)</label>
-                                <input type="number" id="w1" placeholder="70" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; box-sizing:border-box;">
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Height / 身高 (cm)</label>
-                                <input type="number" id="h1" placeholder="175" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; box-sizing:border-box;">
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Age / 年齡</label>
-                                <input type="number" id="a1" placeholder="25" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; box-sizing:border-box;">
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Gender / 性別</label>
-                                <select id="g1" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; background:white;">
-                                    <option value="male">Male / 男</option>
-                                    <option value="female">Female / 女</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label style="font-size:12px; color:var(--apple-grey);">Activity Level / 每週運動量</label>
-                        <select id="act1" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; margin-bottom:15px; background:white;">
-                            <option value="1.2">Sedentary / 久坐 (Office Job)</option>
-                            <option value="1.375">Lightly Active / 輕度 (1-3 days/week)</option>
-                            <option value="1.55">Moderately Active / 中度 (3-5 days/week)</option>
-                            <option value="1.725">Very Active / 高度 (6-7 days/week)</option>
-                            <option value="1.9">Extra Active / 極高強度</option>
-                        </select>
-                        <button onclick="calcTDEE()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">Calculate / 開始計算</button>
-                        
-                        <div id="res1" style="margin-top:20px; display:none; padding:20px; background:#fff; border-radius:15px;">
-                            <div style="text-align:center; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:15px;">
-                                <span style="font-size:13px; color:var(--apple-grey);">Maintenance Calories / 維持熱量 (TDEE):</span><br>
-                                <b id="tdee-val" style="color:var(--accent-blue); font-size:24px;"></b>
-                            </div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div style="background: #f0f9ff; padding: 10px; border-radius: 10px;">
-                                    <span style="font-size:12px; color:#0071e3; font-weight:600;">Fat Loss / 減脂 (-500)</span><br>
-                                    <b id="loss-val" style="font-size:18px;"></b>
-                                </div>
-                                <div style="background: #f0fff4; padding: 10px; border-radius: 10px;">
-                                    <span style="font-size:12px; color:#25d366; font-weight:600;">Muscle Gain / 增肌 (+300)</span><br>
-                                    <b id="gain-val" style="font-size:18px;"></b>
-                                </div>
-                            </div>
-                            <div style="margin-top:15px; text-align:center; background:#f5f5f7; padding:10px; border-radius:10px;">
-                                <span style="font-size:12px; color:var(--apple-grey);">Daily Protein / 建議蛋白質:</span><br>
-                                <b id="prot-val" style="color:var(--apple-black); font-size:18px;"></b>
-                            </div>
-                        </div>
+                <div style="padding: 30px;" id="tdee-tool" class="tabcontent" style="display:block;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <input type="number" id="w1" placeholder="體重 (kg)" style="padding:12px; border-radius:12px; border:1px solid #ddd;">
+                        <input type="number" id="h1" placeholder="身高 (cm)" style="padding:12px; border-radius:12px; border:1px solid #ddd;">
                     </div>
-
-                    <div id="goal-tool" class="tabcontent" style="display: none;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Current Weight / 現時體重 (kg)</label>
-                                <input type="number" id="w2" placeholder="80" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Current BF% / 現時體脂 %</label>
-                                <input type="number" id="bf2" placeholder="25" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
-                            </div>
-                        </div>
-                        <label style="font-size:12px; color:var(--apple-grey);">Target BF% / 目標體脂 %</label>
-                        <input type="number" id="tbf2" placeholder="e.g. 12" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd; margin-bottom:15px; box-sizing:border-box;">
-                        <button onclick="calcGoal()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">Calculate Goal / 預估目標</button>
-                        <div id="res2" style="margin-top:20px; display:none; text-align:center; padding:15px; background:#fff; border-radius:15px;">
-                            <span style="font-size:13px; color:var(--apple-grey);">Ideal Weight / 目標體重:</span> <b id="gw-val" style="color:var(--accent-blue); font-size:20px;"></b><br>
-                            <span id="fat-val" style="color:var(--success-green); font-size:14px; font-weight:600;"></span>
-                        </div>
-                    </div>
-
-                    <div id="strength-tool" class="tabcontent" style="display: none;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Weight / 負重 (kg/lb)</label>
-                                <input type="number" id="w3" placeholder="100" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--apple-grey);">Reps / 次數</label>
-                                <input type="number" id="r3" placeholder="5" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ddd;">
-                            </div>
-                        </div>
-                        <button onclick="calc1RM()" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; font-weight:600; cursor:pointer;">Calculate 1RM / 預估最大重量</button>
-                        <div id="res3" style="margin-top:20px; display:none; text-align:center; padding:15px; background:#fff; border-radius:15px;">
-                            <span style="font-size:13px; color:var(--apple-grey);">Estimated 1RM / 預估 1RM:</span><br>
-                            <b id="rm-val" style="font-size:32px; color:var(--apple-black);"></b>
-                        </div>
-                    </div>
+                    <button onclick="alert('請輸入完整數據後計算')" style="width:100%; background:var(--apple-black); color:white; padding:15px; border-radius:15px; border:none; cursor:pointer;">開始計算</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <style>
-        .tablinks.active { background: #fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .tabcontent { animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
+    <section id="faq">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">FAQ / 常見問題</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-q">訓練時需要自備器材嗎？<span class="en-q">Do I need my own equipment?</span></div>
+                    <div class="faq-a">不需要。場地已提供所有專業健身器械，你只需穿著合適的運動服及運動鞋即可。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">通常多久能看到體態變化？<span class="en-q">How soon can I see results?</span></div>
+                    <div class="faq-a">每個人進度不同，但通常在配合飲食及每週 2-3 次規律訓練下，4-8 週會感覺體能提升，12 週左右會有明顯視覺變化。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 MCT Fitness Professional Training. Markham & Toronto.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/14376630425" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:35px;">
+    </a>
 
     <script>
+        // FAQ 切換
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // 工具箱 Tab 切換
         function openTool(evt, toolName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
@@ -454,99 +288,7 @@
             document.getElementById(toolName).style.display = "block";
             evt.currentTarget.className += " active";
         }
-
-        function calcTDEE() {
-            const w = parseFloat(document.getElementById('w1').value);
-            const h = parseFloat(document.getElementById('h1').value);
-            const a = parseFloat(document.getElementById('a1').value);
-            const g = document.getElementById('g1').value;
-            const act = parseFloat(document.getElementById('act1').value);
-            if (w && h && a) {
-                let bmr = (g === 'male') ? (10 * w + 6.25 * h - 5 * a + 5) : (10 * w + 6.25 * h - 5 * a - 161);
-                let tdee = Math.round(bmr * act);
-                document.getElementById('tdee-val').innerText = tdee + " kcal";
-                document.getElementById('loss-val').innerText = (tdee - 500) + " kcal";
-                document.getElementById('gain-val').innerText = (tdee + 300) + " kcal";
-                document.getElementById('prot-val').innerText = Math.round(w * 1.8) + " g / Day";
-                document.getElementById('res1').style.display = 'block';
-            } else { alert("Please fill all fields / 請填寫所有欄位"); }
-        }
-
-        function calcGoal() {
-            const w = parseFloat(document.getElementById('w2').value);
-            const cb = parseFloat(document.getElementById('bf2').value) / 100;
-            const tb = parseFloat(document.getElementById('tbf2').value) / 100;
-            if (w && cb && tb) {
-                const gw = Math.round(w * (1 - cb) / (1 - tb) * 10) / 10;
-                document.getElementById('gw-val').innerText = gw + " kg";
-                document.getElementById('fat-val').innerText = "Lose approx. / 需減去約 " + Math.round((w - gw) * 10) / 10 + " kg Pure Fat";
-                document.getElementById('res2').style.display = 'block';
-            } else { alert("Please fill all fields / 請填寫所有欄位"); }
-        }
-
-        function calc1RM() {
-            const w = parseFloat(document.getElementById('w3').value);
-            const r = parseFloat(document.getElementById('r3').value);
-            if (w && r) {
-                const rm = Math.round(w * (1 + r / 30)); 
-                document.getElementById('rm-val').innerText = rm;
-                document.getElementById('res3').style.display = 'block';
-            } else { alert("Please fill all fields / 請填寫所有欄位"); }
-        }
     </script>
-    <section id="location" style="background: var(--apple-light);">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 10px;">Service Area / 服務區域</h2>
-            <p style="text-align: center; color: var(--apple-grey); margin-bottom: 30px;">主要授課範圍：Markham / Richmond Hill / Toronto</p>
-            <div class="map-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92055.74824045508!2d-79.37926445000002!3d43.8611132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d5fd639148a7%3A0x28974511978287d!2sMarkham%2C%20ON!5e0!3m2!1sen!2sca!4v1710000000000!5m2!1sen!2sca2" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
 
-    <section id="faq">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 40px;">常見問題 / FAQ</h2>
-            <div class="faq-list" style="max-width: 800px; margin: 0 auto;">
-                <div class="faq-item">
-                    <div class="faq-q">教練，我應該選擇一對一還是小組訓練？<span class="en-q">Coach, should I choose 1-on-1 or group training?</span></div>
-                    <div class="faq-a">這取決於您的個人目標。如果您需要高度精緻的動作糾正、個人化飲食指導，一對一私人訓練效果最顯著。如果您希望與朋友共同進步並降低預算，小組訓練則是理想選擇。<div class="faq-a-en">It depends on your goals. 1-on-1 is best for precise correction and personalized dieting. Group training is ideal for progressing with friends on a budget.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">我有舊患或長期痛症（如腰痛、膝頭痛），可以訓練嗎？<span class="en-q">I have chronic pain, can I still train?</span></div>
-                    <div class="faq-a">絕對可以。我具備糾正性訓練背景，會先評估你的活動度，避開受傷風險，並透過加強弱勢肌肉來減輕痛症。<div class="faq-a-en">Absolutely. I use corrective exercise to assess mobility and strengthen key muscles to alleviate pain safely.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">訓練地點在哪裡？<span class="en-q">Where is the training location?</span></div>
-                    <div class="faq-a">我主要在 Markham 及 Richmond Hill 的私人健身工作室進行授課。環境專業且具備高隱私度，能讓你專注於訓練。<div class="faq-a-en">I primarily teach in Markham and Richmond Hill in professional, private gym environments.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">我需要跟隨非常嚴格的飲食單 (Meal Plan) 嗎？<span class="en-q">Do I need to follow a very strict meal plan?</span></div>
-                    <div class="faq-a">不需要。我主張「可持續性」飲食法。我會教你如何計算宏觀營養素 (Macros)，讓你享受食物的同時仍能達到體態目標。<div class="faq-a-en">No. I teach you how to track macros so you can enjoy the foods you love while still reaching your physique goals.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">我完全沒有健身經驗，會不會跟不上？<span class="en-q">I have zero gym experience. Will it be too hard?</span></div>
-                    <div class="faq-a">完全不會。我會根據你的體能「由零開始」編排課程，重點先放在呼吸與基礎動作模式，確保你在安全情況下穩定進步。<div class="faq-a-en">Not at all. I design programs from scratch, focusing on breathing and basic form to ensure you progress safely and steadily.</div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <a href="https://www.instagram.com/coachming_toronto?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link" target="_blank">Follow @coachming_toronto on Instagram</a>
-            <p>© 2026 MCT Fitness Professional Training. Markham & Richmond Hill, Toronto.</p>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/14376630425?text=你好%20Coach%20Ming，我想諮詢健身課程詳情。" class="whatsapp-btn" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
-    </a>
-
-    <script>
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => { item.classList.toggle('active'); });
-        });
-    </script>
 </body>
 </html>
