@@ -527,6 +527,7 @@
 
         /* ── VIDEO SLIDER ── */
         #vlog { background: var(--surface-2); overflow: hidden; }
+        .slider-wrapper { position: relative; }
         .video-slider {
             display: flex;
             gap: 18px;
@@ -535,7 +536,9 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            cursor: grab;
         }
+        .video-slider.dragging { cursor: grabbing; scroll-snap-type: none; }
         .video-slider::-webkit-scrollbar { display: none; }
         .video-slide { flex: 0 0 260px; scroll-snap-align: start; }
         .video-card-wrap {
@@ -545,15 +548,63 @@
             box-shadow: var(--shadow-md);
             position: relative;
         }
+        /* Transparent overlay stops iframe stealing mouse events during drag */
+        .video-card-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            cursor: grab;
+        }
+        .video-slider.dragging .video-card-wrap::after { cursor: grabbing; }
         .iframe-container { position: relative; width: 100%; padding-bottom: 177.78%; }
         .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .video-caption {
-            text-align: center;
-            padding: 14px 4px 0;
-        }
+        .video-caption { text-align: center; padding: 14px 4px 0; }
         .video-caption h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
         .video-caption span { font-size: 11px; color: var(--ink-ghost); }
         .slider-hint { text-align: center; color: var(--ink-ghost); font-size: 12px; margin-top: 14px; letter-spacing: 0.03em; }
+
+        /* Arrow buttons */
+        .slider-arrow {
+            position: absolute;
+            top: 40%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1.5px solid var(--surface-3);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 18px;
+            color: var(--ink);
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .slider-arrow:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-50%) scale(1.08); }
+        .slider-arrow.prev { left: -22px; }
+        .slider-arrow.next { right: -22px; }
+        .slider-arrow.hidden { opacity: 0; pointer-events: none; }
+        @media (max-width: 768px) { .slider-arrow { display: none; } }
+
+        /* ── SCROLL REVEAL ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
 
         /* ── INSTAGRAM ── */
         .ig-embed-container {
@@ -1008,7 +1059,10 @@
             <h2 class="section-title">真實教學現場</h2>
             <p class="section-sub">見證專業指導，感受訓練氛圍。</p>
         </div>
-        <div class="video-slider">
+        <div class="slider-wrapper">
+            <button class="slider-arrow prev" id="slide-prev">‹</button>
+            <button class="slider-arrow next" id="slide-next">›</button>
+            <div class="video-slider" id="video-slider">
             <div class="video-slide">
                 <div class="video-card-wrap">
                     <div class="iframe-container">
@@ -1073,8 +1127,9 @@
                 </div>
                 <div class="video-caption"><h3>男性高效增肌指導</h3><span>Men's Muscle Hypertrophy</span></div>
             </div>
-        </div>
-        <p class="slider-hint">← 左右滑動查看所有實況 →</p>
+        </div><!-- end video-slider -->
+        </div><!-- end slider-wrapper -->
+        <p class="slider-hint">← 拖動或點擊箭頭查看所有實況 →</p>
     </div>
 </section>
 
@@ -1400,6 +1455,59 @@
         document.getElementById('rm-val').innerText = rm + ' kg';
         document.getElementById('res3').style.display = 'block';
     }
+
+    // Video slider — mouse drag + arrow buttons
+    const slider = document.getElementById('video-slider');
+    let isDown = false, startX, scrollLeft;
+
+    slider.addEventListener('mousedown', e => {
+        isDown = true;
+        slider.classList.add('dragging');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+    document.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('dragging');
+    });
+    slider.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+
+    // Arrow buttons
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+    const slideWidth = 278;
+
+    function updateArrows() {
+        prevBtn.classList.toggle('hidden', slider.scrollLeft < 10);
+        nextBtn.classList.toggle('hidden', slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10);
+    }
+    prevBtn.addEventListener('click', () => { slider.scrollBy({ left: -slideWidth * 2, behavior: 'smooth' }); });
+    nextBtn.addEventListener('click', () => { slider.scrollBy({ left: slideWidth * 2, behavior: 'smooth' }); });
+    slider.addEventListener('scroll', updateArrows);
+    updateArrows();
+
+    // Scroll reveal
+    const revealTargets = document.querySelectorAll('.section-header, .badge-item, .service-card, .photo-card, .review-card, .video-slide, .about-copy, .badge-list, .tools-shell, .map-box, .faq-item');
+    revealTargets.forEach(el => {
+        el.classList.add('reveal');
+        const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains([...el.classList][0]));
+        const idx = siblings.indexOf(el);
+        if (idx >= 1 && idx <= 4) el.classList.add('reveal-delay-' + idx);
+    });
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // FAQ
     document.querySelectorAll('.faq-item').forEach(item => {
