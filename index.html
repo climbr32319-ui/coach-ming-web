@@ -6,6 +6,31 @@
     <meta name="google-site-verification" content="XokmJxfzhnkfbv69cYzga_-58-2Qk1jpaA6zqht_ICM" />
     <title>Toronto & Markham 健身教練 | Coach Ming | 專業動作糾正、體態雕塑</title>
     <meta name="description" content="多倫多華裔小姐官方健身教練 Coach Ming。提供 Markham, Richmond Hill, Toronto 1對1私人健身訓練、動作糾正及痛症改善。專注女性增肌減脂、體態雕塑。">
+
+    <!-- Open Graph / WhatsApp / Facebook 分享預覽 -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://coach-ming-toronto.github.io/coach-ming-web/">
+    <meta property="og:title" content="Coach Ming | Toronto 專業健身教練 | 增肌減脂體態雕塑">
+    <meta property="og:description" content="多倫多華裔小姐官方健身教練。Markham / Richmond Hill / Toronto 1對1私人訓練，動作糾正，痛症改善。立即 WhatsApp 諮詢！">
+    <meta property="og:image" content="https://coach-ming-toronto.github.io/coach-ming-web/result1%20(1).JPEG">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_HK">
+
+    <!-- Twitter / X 分享預覽 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Coach Ming | Toronto 專業健身教練">
+    <meta name="twitter:description" content="Markham / Richmond Hill / Toronto 1對1私人訓練。立即 WhatsApp 諮詢！">
+    <meta name="twitter:image" content="https://coach-ming-toronto.github.io/coach-ming-web/result1%20(1).JPEG">
+
+    <!-- Google Analytics — 將 G-XXXXXXXXXX 換成你的 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -818,6 +843,58 @@
         }
         .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
 
+        /* ── BACK TO TOP ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1.5px solid var(--surface-3);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1999;
+            font-size: 18px;
+            color: var(--ink-soft);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            text-decoration: none;
+        }
+        .back-to-top.visible { opacity: 1; transform: translateY(0); }
+        .back-to-top:hover { background: var(--ink); color: #fff; border-color: var(--ink); transform: translateY(-2px); }
+
+        /* ── FAQ CTA ── */
+        .faq-cta {
+            margin-top: 48px;
+            padding: 36px;
+            background: var(--ink);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+        .faq-cta p { color: rgba(255,255,255,0.65); font-size: 14px; margin-bottom: 6px; }
+        .faq-cta h3 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.3px; }
+        .faq-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--wa-green);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.25s;
+            box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+        }
+        .faq-cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.45); }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1162,7 +1239,8 @@
             <div class="tabs-bar">
                 <button onclick="openTool(event,'tdee-tool')" class="tablinks active">熱量 TDEE</button>
                 <button onclick="openTool(event,'goal-tool')" class="tablinks">目標體重</button>
-                <button onclick="openTool(event,'strength-tool')" class="tablinks">1RM 力量</button>
+                <button onclick="openTool(event,'bmi-tool')" class="tablinks">BMI 指數</button>
+                <button onclick="openTool(event,'macro-tool')" class="tablinks">營養素查詢</button>
             </div>
             <div class="tools-body">
                 <!-- TDEE -->
@@ -1249,26 +1327,73 @@
                     </div>
                 </div>
 
-                <!-- 1RM -->
-                <div id="strength-tool" class="tabcontent" style="display:none;">
+                <!-- BMI -->
+                <div id="bmi-tool" class="tabcontent" style="display:none;">
                     <div class="field-grid">
                         <div>
-                            <label class="field-label">Weight / 負重 (kg/lb)</label>
-                            <input type="number" id="w3" placeholder="100" class="field-input">
+                            <label class="field-label">Weight / 體重 (kg)</label>
+                            <input type="number" id="bmi-w" placeholder="70" class="field-input">
                         </div>
                         <div>
-                            <label class="field-label">Reps / 次數</label>
-                            <input type="number" id="r3" placeholder="5" class="field-input">
+                            <label class="field-label">Height / 身高 (cm)</label>
+                            <input type="number" id="bmi-h" placeholder="170" class="field-input">
                         </div>
                     </div>
-                    <button onclick="calc1RM()" class="calc-btn">Calculate 1RM / 預估最大重量</button>
-                    <div id="res3" class="result-box">
+                    <button onclick="calcBMI()" class="calc-btn">Calculate BMI / 計算 BMI</button>
+                    <div id="res-bmi" class="result-box">
                         <div class="result-main">
-                            <div class="result-label">Estimated 1RM / 預估最大重量</div>
-                            <div id="rm-val" class="result-val">—</div>
+                            <div class="result-label">Your BMI / 您的 BMI 指數</div>
+                            <div id="bmi-val" class="result-val">—</div>
+                        </div>
+                        <div id="bmi-band" class="result-full" style="margin-top:0;">
+                            <div id="bmi-label" class="chip-val" style="font-size:15px;"></div>
+                            <div id="bmi-desc" class="chip-label" style="margin-top:4px; font-size:12px; color:var(--ink-ghost);"></div>
+                        </div>
+                        <div style="margin-top:14px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; text-align:center;">
+                            <div style="padding:8px 4px; border-radius:8px; background:#dbeafe; font-size:11px; font-weight:600; color:#1d4ed8;">偏輕<br>&lt;18.5</div>
+                            <div style="padding:8px 4px; border-radius:8px; background:#dcfce7; font-size:11px; font-weight:600; color:#16a34a;">正常<br>18.5–24.9</div>
+                            <div style="padding:8px 4px; border-radius:8px; background:#fef9c3; font-size:11px; font-weight:600; color:#ca8a04;">過重<br>25–29.9</div>
+                            <div style="padding:8px 4px; border-radius:8px; background:#fee2e2; font-size:11px; font-weight:600; color:#dc2626;">肥胖<br>≥30</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- MACRO FOOD LOOKUP -->
+                <div id="macro-tool" class="tabcontent" style="display:none;">
+                    <div style="margin-bottom:14px;">
+                        <label class="field-label">Food / 食物名稱（英文）</label>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="food-query" placeholder="e.g. chicken breast, rice, egg" class="field-input" style="flex:1;" onkeydown="if(event.key==='Enter') lookupFood()">
+                            <button onclick="lookupFood()" class="calc-btn" style="width:auto; padding:12px 20px; margin-top:0;">查詢</button>
+                        </div>
+                        <div style="font-size:11px; color:var(--ink-ghost); margin-top:6px;">每 100g 之宏量營養素 · Macros per 100g</div>
+                    </div>
+                    <div id="res-macro" class="result-box" style="display:none;">
+                        <div class="result-main" style="padding-bottom:14px; margin-bottom:14px;">
+                            <div class="result-label" id="food-name-label">Food / 食物</div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; text-align:center;">
+                            <div style="background:var(--accent-light); padding:14px 8px; border-radius:var(--radius-sm);">
+                                <div style="font-size:11px; font-weight:700; color:var(--accent); margin-bottom:6px;">熱量 kcal</div>
+                                <div id="m-cal" style="font-size:20px; font-weight:700;">—</div>
+                            </div>
+                            <div style="background:#fef9c3; padding:14px 8px; border-radius:var(--radius-sm);">
+                                <div style="font-size:11px; font-weight:700; color:#ca8a04; margin-bottom:6px;">蛋白質 g</div>
+                                <div id="m-prot" style="font-size:20px; font-weight:700;">—</div>
+                            </div>
+                            <div style="background:#dcfce7; padding:14px 8px; border-radius:var(--radius-sm);">
+                                <div style="font-size:11px; font-weight:700; color:#16a34a; margin-bottom:6px;">碳水 g</div>
+                                <div id="m-carb" style="font-size:20px; font-weight:700;">—</div>
+                            </div>
+                            <div style="background:#fee2e2; padding:14px 8px; border-radius:var(--radius-sm);">
+                                <div style="font-size:11px; font-weight:700; color:#dc2626; margin-bottom:6px;">脂肪 g</div>
+                                <div id="m-fat" style="font-size:20px; font-weight:700;">—</div>
+                            </div>
+                        </div>
+                        <div id="macro-error" style="display:none; text-align:center; padding:12px; color:var(--ink-ghost); font-size:13px;"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1357,10 +1482,18 @@
                 </div>
             </div>
         </div>
+
+        <!-- FAQ CTA -->
+        <div class="faq-cta reveal">
+            <p>Have more questions? / 如有其他疑問</p>
+            <h3>歡迎隨時透過 WhatsApp 與我聯絡，提供免費初步諮詢。<br><span style="font-size:16px; font-weight:400; opacity:0.75;">Feel free to reach out anytime for a free consultation.</span></h3>
+            <a href="https://wa.me/14376630425?text=你好%20Coach%20Ming，我想諮詢健身課程詳情。" target="_blank">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp 免費諮詢 / Free Consultation
+            </a>
+        </div>
     </div>
 </section>
-
-<!-- FOOTER -->
 <footer>
     <div class="container">
         <div class="footer-brand">Coach Ming</div>
@@ -1377,10 +1510,16 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="32" alt="WhatsApp">
 </a>
 
+<!-- BACK TO TOP -->
+<a href="#" class="back-to-top" id="back-to-top" aria-label="返回頂部">↑</a>
+
 <script>
-    // Nav scroll shadow
+    // Nav scroll shadow + back to top
+    const backToTop = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
-        document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
+        const scrolled = window.scrollY > 10;
+        document.getElementById('main-nav').classList.toggle('scrolled', scrolled);
+        backToTop.classList.toggle('visible', window.scrollY > 400);
     });
 
     // Hamburger + Drawer
@@ -1446,14 +1585,56 @@
         document.getElementById('res2').style.display = 'block';
     }
 
-    // 1RM
-    function calc1RM() {
-        const w = parseFloat(document.getElementById('w3').value);
-        const r = parseFloat(document.getElementById('r3').value);
-        if (!w || !r) return alert('Please fill all fields / 請填寫所有欄位');
-        const rm = Math.round(w * (1 + r / 30));
-        document.getElementById('rm-val').innerText = rm + ' kg';
-        document.getElementById('res3').style.display = 'block';
+    // BMI
+    function calcBMI() {
+        const w = parseFloat(document.getElementById('bmi-w').value);
+        const h = parseFloat(document.getElementById('bmi-h').value) / 100;
+        if (!w || !h) return alert('Please fill all fields / 請填寫所有欄位');
+        const bmi = Math.round(w / (h * h) * 10) / 10;
+        document.getElementById('bmi-val').innerText = bmi;
+        let label, desc, color;
+        if (bmi < 18.5) {
+            label = '體重偏輕 Underweight'; desc = '建議增加熱量攝取及進行適量訓練'; color = '#1d4ed8';
+        } else if (bmi < 25) {
+            label = '體重正常 Normal Weight'; desc = '維持現有生活習慣，持續鍛鍊'; color = '#16a34a';
+        } else if (bmi < 30) {
+            label = '體重過重 Overweight'; desc = '建議透過訓練及飲食調整改善體態'; color = '#ca8a04';
+        } else {
+            label = '肥胖 Obese'; desc = '建議諮詢專業教練制定個人計劃'; color = '#dc2626';
+        }
+        document.getElementById('bmi-label').innerText = label;
+        document.getElementById('bmi-label').style.color = color;
+        document.getElementById('bmi-desc').innerText = desc;
+        document.getElementById('res-bmi').style.display = 'block';
+    }
+
+    // Macro food lookup (Open Food Facts API)
+    async function lookupFood() {
+        const query = document.getElementById('food-query').value.trim();
+        if (!query) return alert('Please enter a food name / 請輸入食物名稱');
+        const resMacro = document.getElementById('res-macro');
+        const errEl = document.getElementById('macro-error');
+        resMacro.style.display = 'block';
+        errEl.style.display = 'none';
+        ['m-cal','m-prot','m-carb','m-fat'].forEach(id => document.getElementById(id).innerText = '…');
+        document.getElementById('food-name-label').innerText = query;
+        try {
+            const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=1`;
+            const res = await fetch(url);
+            const data = await res.json();
+            const p = data.products?.[0];
+            if (!p || !p.nutriments) throw new Error('not found');
+            const n = p.nutriments;
+            document.getElementById('food-name-label').innerText = (p.product_name_en || p.product_name || query) + ' (per 100g)';
+            document.getElementById('m-cal').innerText  = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
+            document.getElementById('m-prot').innerText = Math.round((n['proteins_100g'] || 0) * 10) / 10;
+            document.getElementById('m-carb').innerText = Math.round((n['carbohydrates_100g'] || 0) * 10) / 10;
+            document.getElementById('m-fat').innerText  = Math.round((n['fat_100g'] || 0) * 10) / 10;
+        } catch(e) {
+            ['m-cal','m-prot','m-carb','m-fat'].forEach(id => document.getElementById(id).innerText = '—');
+            errEl.style.display = 'block';
+            errEl.innerText = '找不到此食物，請嘗試其他英文名稱。\nFood not found — try a different search term.';
+        }
     }
 
     // Video slider — mouse drag + arrow buttons
