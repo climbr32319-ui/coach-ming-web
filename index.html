@@ -843,6 +843,36 @@
         }
         .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
 
+        .cuisine-btn {
+            padding: 10px 6px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--surface-3);
+            background: var(--surface);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink-soft);
+        }
+        .cuisine-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .cuisine-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+        .eating-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--surface-3);
+            padding: 16px 18px;
+            margin-bottom: 10px;
+        }
+        .eating-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .eating-card h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin: 0; }
+        .eating-badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+        .badge-best { background: #dcfce7; color: #16a34a; }
+        .badge-ok   { background: #fef9c3; color: #ca8a04; }
+        .badge-avoid{ background: #fee2e2; color: #dc2626; }
+        .eating-tip { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+        .eating-tip-en { font-size: 11px; color: var(--ink-ghost); font-style: italic; margin-top: 4px; }
+
         /* ── BACK TO TOP ── */
         .back-to-top {
             position: fixed;
@@ -1240,7 +1270,7 @@
                 <button onclick="openTool(event,'tdee-tool')" class="tablinks active">熱量 TDEE</button>
                 <button onclick="openTool(event,'goal-tool')" class="tablinks">目標體重</button>
                 <button onclick="openTool(event,'bmi-tool')" class="tablinks">BMI 指數</button>
-                <button onclick="openTool(event,'macro-tool')" class="tablinks">營養素查詢</button>
+                <button onclick="openTool(event,'eating-tool')" class="tablinks">外食指南 🍱</button>
             </div>
             <div class="tools-body">
                 <!-- TDEE -->
@@ -1358,40 +1388,20 @@
                     </div>
                 </div>
 
-                <!-- MACRO FOOD LOOKUP -->
-                <div id="macro-tool" class="tabcontent" style="display:none;">
-                    <div style="margin-bottom:14px;">
-                        <label class="field-label">Food / 食物名稱（英文）</label>
-                        <div style="display:flex; gap:8px;">
-                            <input type="text" id="food-query" placeholder="e.g. chicken breast, rice, egg" class="field-input" style="flex:1;" onkeydown="if(event.key==='Enter') lookupFood()">
-                            <button onclick="lookupFood()" class="calc-btn" style="width:auto; padding:12px 20px; margin-top:0;">查詢</button>
+                <!-- TORONTO EATING OUT GUIDE -->
+                <div id="eating-tool" class="tabcontent" style="display:none;">
+                    <div style="margin-bottom:18px;">
+                        <label class="field-label">選擇餐廳類型 · Select Cuisine Type</label>
+                        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px;" id="cuisine-btns">
+                            <button class="cuisine-btn active" onclick="showCuisine(this,'chinese')">🥢 中式</button>
+                            <button class="cuisine-btn" onclick="showCuisine(this,'western')">🍔 西式</button>
+                            <button class="cuisine-btn" onclick="showCuisine(this,'japanese')">🍱 日式</button>
+                            <button class="cuisine-btn" onclick="showCuisine(this,'korean')">🥗 韓式</button>
+                            <button class="cuisine-btn" onclick="showCuisine(this,'fastfood')">🍟 快餐</button>
+                            <button class="cuisine-btn" onclick="showCuisine(this,'cafe')">☕ Café</button>
                         </div>
-                        <div style="font-size:11px; color:var(--ink-ghost); margin-top:6px;">每 100g 之宏量營養素 · Macros per 100g</div>
                     </div>
-                    <div id="res-macro" class="result-box" style="display:none;">
-                        <div class="result-main" style="padding-bottom:14px; margin-bottom:14px;">
-                            <div class="result-label" id="food-name-label">Food / 食物</div>
-                        </div>
-                        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; text-align:center;">
-                            <div style="background:var(--accent-light); padding:14px 8px; border-radius:var(--radius-sm);">
-                                <div style="font-size:11px; font-weight:700; color:var(--accent); margin-bottom:6px;">熱量 kcal</div>
-                                <div id="m-cal" style="font-size:20px; font-weight:700;">—</div>
-                            </div>
-                            <div style="background:#fef9c3; padding:14px 8px; border-radius:var(--radius-sm);">
-                                <div style="font-size:11px; font-weight:700; color:#ca8a04; margin-bottom:6px;">蛋白質 g</div>
-                                <div id="m-prot" style="font-size:20px; font-weight:700;">—</div>
-                            </div>
-                            <div style="background:#dcfce7; padding:14px 8px; border-radius:var(--radius-sm);">
-                                <div style="font-size:11px; font-weight:700; color:#16a34a; margin-bottom:6px;">碳水 g</div>
-                                <div id="m-carb" style="font-size:20px; font-weight:700;">—</div>
-                            </div>
-                            <div style="background:#fee2e2; padding:14px 8px; border-radius:var(--radius-sm);">
-                                <div style="font-size:11px; font-weight:700; color:#dc2626; margin-bottom:6px;">脂肪 g</div>
-                                <div id="m-fat" style="font-size:20px; font-weight:700;">—</div>
-                            </div>
-                        </div>
-                        <div id="macro-error" style="display:none; text-align:center; padding:12px; color:var(--ink-ghost); font-size:13px;"></div>
-                    </div>
+                    <div id="eating-content"></div>
                 </div>
 
             </div>
@@ -1608,34 +1618,69 @@
         document.getElementById('res-bmi').style.display = 'block';
     }
 
-    // Macro food lookup (Open Food Facts API)
-    async function lookupFood() {
-        const query = document.getElementById('food-query').value.trim();
-        if (!query) return alert('Please enter a food name / 請輸入食物名稱');
-        const resMacro = document.getElementById('res-macro');
-        const errEl = document.getElementById('macro-error');
-        resMacro.style.display = 'block';
-        errEl.style.display = 'none';
-        ['m-cal','m-prot','m-carb','m-fat'].forEach(id => document.getElementById(id).innerText = '…');
-        document.getElementById('food-name-label').innerText = query;
-        try {
-            const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=1`;
-            const res = await fetch(url);
-            const data = await res.json();
-            const p = data.products?.[0];
-            if (!p || !p.nutriments) throw new Error('not found');
-            const n = p.nutriments;
-            document.getElementById('food-name-label').innerText = (p.product_name_en || p.product_name || query) + ' (per 100g)';
-            document.getElementById('m-cal').innerText  = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
-            document.getElementById('m-prot').innerText = Math.round((n['proteins_100g'] || 0) * 10) / 10;
-            document.getElementById('m-carb').innerText = Math.round((n['carbohydrates_100g'] || 0) * 10) / 10;
-            document.getElementById('m-fat').innerText  = Math.round((n['fat_100g'] || 0) * 10) / 10;
-        } catch(e) {
-            ['m-cal','m-prot','m-carb','m-fat'].forEach(id => document.getElementById(id).innerText = '—');
-            errEl.style.display = 'block';
-            errEl.innerText = '找不到此食物，請嘗試其他英文名稱。\nFood not found — try a different search term.';
-        }
+    // Toronto Eating Out Fat Loss Guide
+    const eatingData = {
+        chinese: [
+            { name: '白切雞飯（少飯）· Poached Chicken Rice (less rice)', badge: 'best', tip: '點餐時要求少飯多菜，雞皮可去掉以減少脂肪攝取。多倫多唐人街及 Markham 廣式餐廳均有供應。', en: 'Ask for less rice, more vegetables. Remove chicken skin to cut fat. Available at most Cantonese restaurants in Markham & Chinatown.' },
+            { name: '清蒸魚 · Steamed Fish', badge: 'best', tip: '高蛋白、低脂肪之首選。避免豉汁或油份過多之烹調方式，清蒸最為理想。', en: 'High protein, low fat — ideal choice. Opt for steamed over braised or fried preparations.' },
+            { name: '炒時蔬（少油）· Stir-fried Vegetables (less oil)', badge: 'best', tip: '點餐時可指明「少油」，補充纖維及微量營養素，熱量較低。', en: 'Request "less oil" when ordering. Great for fibre and micronutrients with minimal calories.' },
+            { name: '叉燒飯 · BBQ Pork Rice', badge: 'ok', tip: '叉燒本身糖分及鈉含量較高，建議選擇瘦肉部分，飯量減半。', en: 'BBQ pork is higher in sugar and sodium. Choose lean cuts and reduce rice portion.' },
+            { name: '煎炸點心（腸粉除外）· Fried Dim Sum', badge: 'avoid', tip: '炸點心熱量極高，建議以蒸點心（如蝦餃、燒賣）代替。', en: 'Fried dim sum is calorie-dense. Swap for steamed options like har gow or siu mai.' },
+        ],
+        western: [
+            { name: '烤雞胸沙律 · Grilled Chicken Salad', badge: 'best', tip: '醬汁選擇油醋汁（Vinaigrette）而非凱撒或牧場醬，可大幅減少熱量。多倫多 Freshii、Salad King 均有健康選擇。', en: 'Choose vinaigrette over Caesar or ranch dressing. Great options at Freshii or Salad King.' },
+            { name: '三文魚扒 · Grilled Salmon', badge: 'best', tip: '富含 Omega-3 及蛋白質，選擇烤製而非奶油煎製，配蔬菜為佳。', en: 'Rich in Omega-3 and protein. Choose grilled over butter-seared, pair with vegetables.' },
+            { name: '牛扒（里脊）· Beef Tenderloin Steak', badge: 'ok', tip: '選擇里脊或西冷等較瘦部位，避免加芝士或忌廉汁，醬汁另上。', en: 'Choose leaner cuts like tenderloin or sirloin. Skip cheese sauces, ask for sauce on the side.' },
+            { name: '漢堡包 · Burger', badge: 'avoid', tip: '一個普通漢堡包可達 800–1200 kcal。如必須進食，可去掉包身改生菜包，或選擇無芝士版本。', en: 'A regular burger can reach 800–1200 kcal. Try lettuce wrap or no-cheese versions if needed.' },
+            { name: '薯條 · French Fries', badge: 'avoid', tip: '高脂高鈉，可以沙律或烤蔬菜代替作為配菜。', en: 'High fat and sodium. Substitute with salad or roasted vegetables as a side.' },
+        ],
+        japanese: [
+            { name: '刺身拼盤 · Sashimi Platter', badge: 'best', tip: '極低熱量、高蛋白質之首選，避免使用過多豉油以控制鈉攝取。', en: 'Extremely low calorie and high protein. Go easy on soy sauce to manage sodium intake.' },
+            { name: '手卷（魚生）· Hand Roll (Raw Fish)', badge: 'best', tip: '選擇魚生手卷，避免天婦羅或蟹柳款式，海苔熱量低且富含礦物質。', en: 'Choose raw fish rolls, avoid tempura or imitation crab versions. Nori is low calorie and mineral-rich.' },
+            { name: '味噌湯 · Miso Soup', badge: 'ok', tip: '鈉含量較高，但熱量極低，可作為飽腹感補充，建議每餐限一碗。', en: 'High sodium but very low calorie. Limit to one bowl per meal for satiety.' },
+            { name: '天婦羅 · Tempura', badge: 'avoid', tip: '油炸麵衣大幅提升熱量，建議以鹽燒或刺身代替。', en: 'Deep-fried batter significantly increases calories. Swap for shioyaki (salt-grilled) or sashimi.' },
+            { name: '拉麵 · Ramen', badge: 'avoid', tip: '湯底鈉含量極高，麵條碳水化合物豐富，建議減脂期間減少進食頻率。', en: 'Very high sodium broth and carb-heavy noodles. Limit frequency during fat loss phases.' },
+        ],
+        korean: [
+            { name: '烤牛肉（瘦肉）· Bulgogi / Grilled Lean Beef', badge: 'best', tip: '選擇牛舌或牛里脊等較瘦部位，配菜（小菜）以蔬菜為主，控制進食量。', en: 'Choose leaner cuts like bulgogi or beef tongue. Focus on vegetable banchan as sides.' },
+            { name: '韓式泡菜 · Kimchi', badge: 'best', tip: '富含益生菌及纖維，熱量極低，有助腸道健康及飽腹感。', en: 'Rich in probiotics and fibre, very low calorie. Supports gut health and satiety.' },
+            { name: '豆腐鍋 · Sundubu Jjigae', badge: 'ok', tip: '豆腐蛋白質豐富，但湯底鈉含量較高。建議去除部分湯汁，增加豆腐攝取比例。', en: 'Tofu is protein-rich, but broth is high sodium. Eat more tofu, less broth.' },
+            { name: '韓式炸雞 · Korean Fried Chicken', badge: 'avoid', tip: '二次油炸工藝使熱量極高，偶爾進食可選擇無醬汁版本（原味）。', en: 'Double-fried method makes it very calorie-dense. If indulging, opt for the unsauced original version.' },
+        ],
+        fastfood: [
+            { name: 'Tim Hortons — 蛋白質碗 · Protein Bowl', badge: 'best', tip: '選擇無醬汁或少醬汁版本，蛋白質含量可觀，適合外出時快速補充。', en: 'Choose no or light sauce. Good protein content for a quick on-the-go meal.' },
+            { name: 'Subway — 六吋全麥雞胸 · 6" Whole Wheat Chicken', badge: 'best', tip: '選擇全麥包、烤雞胸，醬汁以芥末醬代替蛋黃醬，大量蔬菜填充。', en: 'Whole wheat bread, grilled chicken, mustard instead of mayo, load up on vegetables.' },
+            { name: 'McDonald\'s — 麥樂雞（6件）· McNuggets (6pc)', badge: 'ok', tip: '熱量尚算可控，但鈉含量高。避免蘸醬，搭配沙律代替薯條。', en: 'Moderate calories but high sodium. Skip dipping sauce, pair with side salad instead of fries.' },
+            { name: '所有超值餐套餐 · All Value Meal Combos', badge: 'avoid', tip: '套餐組合通常附送薯條及汽水，可輕易超過 1200 kcal，建議單點主食及水。', en: 'Combos often exceed 1200 kcal with fries and soda included. Order à la carte with water.' },
+        ],
+        cafe: [
+            { name: '黑咖啡 / 美式咖啡 · Black Coffee / Americano', badge: 'best', tip: '零熱量，提升代謝，訓練前飲用效果更佳。避免添加糖漿或奶油。', en: 'Zero calories, metabolism-boosting. Great pre-workout. Avoid syrups and creamers.' },
+            { name: '希臘乳酪配莓果 · Greek Yogurt with Berries', badge: 'best', tip: '高蛋白低糖之點心選擇，多倫多 Aroma Espresso Bar 等咖啡廳均有提供。', en: 'High protein, low sugar snack. Available at cafés like Aroma Espresso Bar in Toronto.' },
+            { name: '拿鐵（脫脂奶）· Latte (Skim Milk)', badge: 'ok', tip: '以脫脂奶或燕麥奶代替全脂奶，避免添加糖漿，熱量可控制在 100 kcal 以下。', en: 'Use skim or oat milk, skip syrups to keep under 100 kcal.' },
+            { name: '星冰樂 / 特飲 · Frappuccino / Specialty Drinks', badge: 'avoid', tip: '部分特飲含糖量可達 60–80g，相當於 15–20 茶匙糖，減脂期間應完全避免。', en: 'Some specialty drinks contain 60–80g of sugar — equivalent to 15–20 tsp. Avoid during fat loss.' },
+        ],
+    };
+
+    function showCuisine(btn, type) {
+        document.querySelectorAll('.cuisine-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const data = eatingData[type];
+        const badgeMap = { best: ['首選 Best Choice', 'badge-best'], ok: ['可以 Acceptable', 'badge-ok'], avoid: ['避免 Avoid', 'badge-avoid'] };
+        document.getElementById('eating-content').innerHTML = data.map(item => {
+            const [label, cls] = badgeMap[item.badge];
+            return `<div class="eating-card">
+                <div class="eating-card-header">
+                    <h4>${item.name}</h4>
+                    <span class="eating-badge ${cls}">${label}</span>
+                </div>
+                <div class="eating-tip">${item.tip}</div>
+                <div class="eating-tip-en">${item.en}</div>
+            </div>`;
+        }).join('');
     }
+
+    // Init eating guide
+    showCuisine(document.querySelector('.cuisine-btn'), 'chinese');
 
     // Video slider — mouse drag + arrow buttons
     const slider = document.getElementById('video-slider');
