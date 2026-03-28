@@ -843,7 +843,38 @@
         }
         .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
 
-        .cuisine-btn {
+        .video-fallback {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 20px;
+            text-align: center;
+            z-index: 5;
+        }
+        .video-fallback.show { display: flex; }
+        .video-fallback-icon { font-size: 36px; }
+        .video-fallback p { color: rgba(255,255,255,0.75); font-size: 12px; line-height: 1.6; margin: 0; }
+        .video-fallback a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ff0000;
+            color: #fff;
+            padding: 9px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            transition: opacity 0.2s;
+        }
+        .video-fallback a:hover { opacity: 0.85; }
+
+        /* ── CUISINE BTN (kept for potential reuse) ── */
             padding: 10px 6px;
             border-radius: var(--radius-sm);
             border: 1.5px solid var(--surface-3);
@@ -1170,71 +1201,8 @@
             <button class="slider-arrow prev" id="slide-prev">‹</button>
             <button class="slider-arrow next" id="slide-next">›</button>
             <div class="video-slider" id="video-slider">
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/9j5O6GQPAAw?autoplay=1&mute=1&loop=1&playlist=9j5O6GQPAAw&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>情侶雙人趣味訓練</h3><span>Couple Dynamic Workout</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/n-fRw2haUvM?autoplay=1&mute=1&loop=1&playlist=n-fRw2haUvM&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>父子同行力量訓練</h3><span>Father & Son Strength</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/iyYgWlGRJlY?autoplay=1&mute=1&loop=1&playlist=iyYgWlGRJlY&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>銀髮族功能性防跌</h3><span>Senior Active Aging</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/hjS3ZEMCJzI?autoplay=1&mute=1&loop=1&playlist=hjS3ZEMCJzI&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>女性蜜桃臀雕塑</h3><span>Women's Glute Sculpting</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/W-FefBuJVTE?autoplay=1&mute=1&loop=1&playlist=W-FefBuJVTE&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>深層下肢力量訓練</h3><span>Lower Body Strength</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/rAW8M-Mqu8Y?autoplay=1&mute=1&loop=1&playlist=rAW8M-Mqu8Y&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>女性進階力量訓練</h3><span>Advanced Power Build</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/bNcLUe11rdY?autoplay=1&mute=1&loop=1&playlist=bNcLUe11rdY&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>女性直角肩線條</h3><span>Upper Body Definition</span></div>
-            </div>
-            <div class="video-slide">
-                <div class="video-card-wrap">
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/KGrz4om839c?autoplay=1&mute=1&loop=1&playlist=KGrz4om839c&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="video-caption"><h3>男性高效增肌指導</h3><span>Men's Muscle Hypertrophy</span></div>
-            </div>
-        </div><!-- end video-slider -->
+            <!-- Videos rendered by JS for fallback support -->
+            </div><!-- end video-slider -->
         </div><!-- end slider-wrapper -->
         <p class="slider-hint">← 拖動或點擊箭頭查看所有實況 →</p>
     </div>
@@ -1270,7 +1238,6 @@
                 <button onclick="openTool(event,'tdee-tool')" class="tablinks active">熱量 TDEE</button>
                 <button onclick="openTool(event,'goal-tool')" class="tablinks">目標體重</button>
                 <button onclick="openTool(event,'bmi-tool')" class="tablinks">BMI 指數</button>
-                <button onclick="openTool(event,'eating-tool')" class="tablinks">外食指南 🍱</button>
             </div>
             <div class="tools-body">
                 <!-- TDEE -->
@@ -1386,22 +1353,6 @@
                             <div style="padding:8px 4px; border-radius:8px; background:#fee2e2; font-size:11px; font-weight:600; color:#dc2626;">肥胖<br>≥30</div>
                         </div>
                     </div>
-                </div>
-
-                <!-- TORONTO EATING OUT GUIDE -->
-                <div id="eating-tool" class="tabcontent" style="display:none;">
-                    <div style="margin-bottom:18px;">
-                        <label class="field-label">選擇餐廳類型 · Select Cuisine Type</label>
-                        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px;" id="cuisine-btns">
-                            <button class="cuisine-btn active" onclick="showCuisine(this,'chinese')">🥢 中式</button>
-                            <button class="cuisine-btn" onclick="showCuisine(this,'western')">🍔 西式</button>
-                            <button class="cuisine-btn" onclick="showCuisine(this,'japanese')">🍱 日式</button>
-                            <button class="cuisine-btn" onclick="showCuisine(this,'korean')">🥗 韓式</button>
-                            <button class="cuisine-btn" onclick="showCuisine(this,'fastfood')">🍟 快餐</button>
-                            <button class="cuisine-btn" onclick="showCuisine(this,'cafe')">☕ Café</button>
-                        </div>
-                    </div>
-                    <div id="eating-content"></div>
                 </div>
 
             </div>
@@ -1618,71 +1569,69 @@
         document.getElementById('res-bmi').style.display = 'block';
     }
 
-    // Toronto Eating Out Fat Loss Guide
-    const eatingData = {
-        chinese: [
-            { name: '白切雞飯（少飯）· Poached Chicken Rice (less rice)', badge: 'best', tip: '點餐時要求少飯多菜，雞皮可去掉以減少脂肪攝取。多倫多唐人街及 Markham 廣式餐廳均有供應。', en: 'Ask for less rice, more vegetables. Remove chicken skin to cut fat. Available at most Cantonese restaurants in Markham & Chinatown.' },
-            { name: '清蒸魚 · Steamed Fish', badge: 'best', tip: '高蛋白、低脂肪之首選。避免豉汁或油份過多之烹調方式，清蒸最為理想。', en: 'High protein, low fat — ideal choice. Opt for steamed over braised or fried preparations.' },
-            { name: '炒時蔬（少油）· Stir-fried Vegetables (less oil)', badge: 'best', tip: '點餐時可指明「少油」，補充纖維及微量營養素，熱量較低。', en: 'Request "less oil" when ordering. Great for fibre and micronutrients with minimal calories.' },
-            { name: '叉燒飯 · BBQ Pork Rice', badge: 'ok', tip: '叉燒本身糖分及鈉含量較高，建議選擇瘦肉部分，飯量減半。', en: 'BBQ pork is higher in sugar and sodium. Choose lean cuts and reduce rice portion.' },
-            { name: '煎炸點心（腸粉除外）· Fried Dim Sum', badge: 'avoid', tip: '炸點心熱量極高，建議以蒸點心（如蝦餃、燒賣）代替。', en: 'Fried dim sum is calorie-dense. Swap for steamed options like har gow or siu mai.' },
-        ],
-        western: [
-            { name: '烤雞胸沙律 · Grilled Chicken Salad', badge: 'best', tip: '醬汁選擇油醋汁（Vinaigrette）而非凱撒或牧場醬，可大幅減少熱量。多倫多 Freshii、Salad King 均有健康選擇。', en: 'Choose vinaigrette over Caesar or ranch dressing. Great options at Freshii or Salad King.' },
-            { name: '三文魚扒 · Grilled Salmon', badge: 'best', tip: '富含 Omega-3 及蛋白質，選擇烤製而非奶油煎製，配蔬菜為佳。', en: 'Rich in Omega-3 and protein. Choose grilled over butter-seared, pair with vegetables.' },
-            { name: '牛扒（里脊）· Beef Tenderloin Steak', badge: 'ok', tip: '選擇里脊或西冷等較瘦部位，避免加芝士或忌廉汁，醬汁另上。', en: 'Choose leaner cuts like tenderloin or sirloin. Skip cheese sauces, ask for sauce on the side.' },
-            { name: '漢堡包 · Burger', badge: 'avoid', tip: '一個普通漢堡包可達 800–1200 kcal。如必須進食，可去掉包身改生菜包，或選擇無芝士版本。', en: 'A regular burger can reach 800–1200 kcal. Try lettuce wrap or no-cheese versions if needed.' },
-            { name: '薯條 · French Fries', badge: 'avoid', tip: '高脂高鈉，可以沙律或烤蔬菜代替作為配菜。', en: 'High fat and sodium. Substitute with salad or roasted vegetables as a side.' },
-        ],
-        japanese: [
-            { name: '刺身拼盤 · Sashimi Platter', badge: 'best', tip: '極低熱量、高蛋白質之首選，避免使用過多豉油以控制鈉攝取。', en: 'Extremely low calorie and high protein. Go easy on soy sauce to manage sodium intake.' },
-            { name: '手卷（魚生）· Hand Roll (Raw Fish)', badge: 'best', tip: '選擇魚生手卷，避免天婦羅或蟹柳款式，海苔熱量低且富含礦物質。', en: 'Choose raw fish rolls, avoid tempura or imitation crab versions. Nori is low calorie and mineral-rich.' },
-            { name: '味噌湯 · Miso Soup', badge: 'ok', tip: '鈉含量較高，但熱量極低，可作為飽腹感補充，建議每餐限一碗。', en: 'High sodium but very low calorie. Limit to one bowl per meal for satiety.' },
-            { name: '天婦羅 · Tempura', badge: 'avoid', tip: '油炸麵衣大幅提升熱量，建議以鹽燒或刺身代替。', en: 'Deep-fried batter significantly increases calories. Swap for shioyaki (salt-grilled) or sashimi.' },
-            { name: '拉麵 · Ramen', badge: 'avoid', tip: '湯底鈉含量極高，麵條碳水化合物豐富，建議減脂期間減少進食頻率。', en: 'Very high sodium broth and carb-heavy noodles. Limit frequency during fat loss phases.' },
-        ],
-        korean: [
-            { name: '烤牛肉（瘦肉）· Bulgogi / Grilled Lean Beef', badge: 'best', tip: '選擇牛舌或牛里脊等較瘦部位，配菜（小菜）以蔬菜為主，控制進食量。', en: 'Choose leaner cuts like bulgogi or beef tongue. Focus on vegetable banchan as sides.' },
-            { name: '韓式泡菜 · Kimchi', badge: 'best', tip: '富含益生菌及纖維，熱量極低，有助腸道健康及飽腹感。', en: 'Rich in probiotics and fibre, very low calorie. Supports gut health and satiety.' },
-            { name: '豆腐鍋 · Sundubu Jjigae', badge: 'ok', tip: '豆腐蛋白質豐富，但湯底鈉含量較高。建議去除部分湯汁，增加豆腐攝取比例。', en: 'Tofu is protein-rich, but broth is high sodium. Eat more tofu, less broth.' },
-            { name: '韓式炸雞 · Korean Fried Chicken', badge: 'avoid', tip: '二次油炸工藝使熱量極高，偶爾進食可選擇無醬汁版本（原味）。', en: 'Double-fried method makes it very calorie-dense. If indulging, opt for the unsauced original version.' },
-        ],
-        fastfood: [
-            { name: 'Tim Hortons — 蛋白質碗 · Protein Bowl', badge: 'best', tip: '選擇無醬汁或少醬汁版本，蛋白質含量可觀，適合外出時快速補充。', en: 'Choose no or light sauce. Good protein content for a quick on-the-go meal.' },
-            { name: 'Subway — 六吋全麥雞胸 · 6" Whole Wheat Chicken', badge: 'best', tip: '選擇全麥包、烤雞胸，醬汁以芥末醬代替蛋黃醬，大量蔬菜填充。', en: 'Whole wheat bread, grilled chicken, mustard instead of mayo, load up on vegetables.' },
-            { name: 'McDonald\'s — 麥樂雞（6件）· McNuggets (6pc)', badge: 'ok', tip: '熱量尚算可控，但鈉含量高。避免蘸醬，搭配沙律代替薯條。', en: 'Moderate calories but high sodium. Skip dipping sauce, pair with side salad instead of fries.' },
-            { name: '所有超值餐套餐 · All Value Meal Combos', badge: 'avoid', tip: '套餐組合通常附送薯條及汽水，可輕易超過 1200 kcal，建議單點主食及水。', en: 'Combos often exceed 1200 kcal with fries and soda included. Order à la carte with water.' },
-        ],
-        cafe: [
-            { name: '黑咖啡 / 美式咖啡 · Black Coffee / Americano', badge: 'best', tip: '零熱量，提升代謝，訓練前飲用效果更佳。避免添加糖漿或奶油。', en: 'Zero calories, metabolism-boosting. Great pre-workout. Avoid syrups and creamers.' },
-            { name: '希臘乳酪配莓果 · Greek Yogurt with Berries', badge: 'best', tip: '高蛋白低糖之點心選擇，多倫多 Aroma Espresso Bar 等咖啡廳均有提供。', en: 'High protein, low sugar snack. Available at cafés like Aroma Espresso Bar in Toronto.' },
-            { name: '拿鐵（脫脂奶）· Latte (Skim Milk)', badge: 'ok', tip: '以脫脂奶或燕麥奶代替全脂奶，避免添加糖漿，熱量可控制在 100 kcal 以下。', en: 'Use skim or oat milk, skip syrups to keep under 100 kcal.' },
-            { name: '星冰樂 / 特飲 · Frappuccino / Specialty Drinks', badge: 'avoid', tip: '部分特飲含糖量可達 60–80g，相當於 15–20 茶匙糖，減脂期間應完全避免。', en: 'Some specialty drinks contain 60–80g of sugar — equivalent to 15–20 tsp. Avoid during fat loss.' },
-        ],
-    };
+    // ── VIDEO DATA ──
+    const videos = [
+        { id: '9j5O6GQPAAw',  title: '情侶雙人趣味訓練', sub: 'Couple Dynamic Workout' },
+        { id: 'n-fRw2haUvM',  title: '父子同行力量訓練',  sub: 'Father & Son Strength' },
+        { id: 'iyYgWlGRJlY',  title: '銀髮族功能性防跌',  sub: 'Senior Active Aging' },
+        { id: 'hjS3ZEMCJzI',  title: '女性蜜桃臀雕塑',    sub: "Women's Glute Sculpting" },
+        { id: 'W-FefBuJVTE',  title: '深層下肢力量訓練',  sub: 'Lower Body Strength' },
+        { id: 'rAW8M-Mqu8Y',  title: '女性進階力量訓練',  sub: 'Advanced Power Build' },
+        { id: 'bNcLUe11rdY',  title: '女性直角肩線條',    sub: 'Upper Body Definition' },
+        { id: 'KGrz4om839c',  title: '男性高效增肌指導',  sub: "Men's Muscle Hypertrophy" },
+    ];
 
-    function showCuisine(btn, type) {
-        document.querySelectorAll('.cuisine-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const data = eatingData[type];
-        const badgeMap = { best: ['首選 Best Choice', 'badge-best'], ok: ['可以 Acceptable', 'badge-ok'], avoid: ['避免 Avoid', 'badge-avoid'] };
-        document.getElementById('eating-content').innerHTML = data.map(item => {
-            const [label, cls] = badgeMap[item.badge];
-            return `<div class="eating-card">
-                <div class="eating-card-header">
-                    <h4>${item.name}</h4>
-                    <span class="eating-badge ${cls}">${label}</span>
+    // Build origin-safe embed URL
+    const origin = encodeURIComponent(location.origin || 'https://coach-ming-toronto.github.io');
+
+    const sliderEl = document.getElementById('video-slider');
+    sliderEl.innerHTML = videos.map(v => `
+        <div class="video-slide">
+            <div class="video-card-wrap">
+                <div class="iframe-container">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&mute=1&loop=1&playlist=${v.id}&controls=0&modestbranding=1&rel=0&origin=${origin}&enablejsapi=1"
+                        allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        loading="lazy"
+                        data-vid="${v.id}"
+                        title="${v.title}"
+                    ></iframe>
+                    <div class="video-fallback" id="fallback-${v.id}">
+                        <div class="video-fallback-icon">▶️</div>
+                        <p>影片暫時無法載入<br><span style="font-size:11px; opacity:0.6;">Video unavailable (VPN / network issue)</span></p>
+                        <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+                            在 YouTube 觀看
+                        </a>
+                    </div>
                 </div>
-                <div class="eating-tip">${item.tip}</div>
-                <div class="eating-tip-en">${item.en}</div>
-            </div>`;
-        }).join('');
-    }
+            </div>
+            <div class="video-caption"><h3>${v.title}</h3><span>${v.sub}</span></div>
+        </div>
+    `).join('');
 
-    // Init eating guide
-    showCuisine(document.querySelector('.cuisine-btn'), 'chinese');
+    // ── FALLBACK DETECTION ──
+    // Show fallback if iframe fails to load within 8 seconds
+    document.querySelectorAll('#video-slider iframe').forEach(iframe => {
+        const vid = iframe.dataset.vid;
+        const fallback = document.getElementById('fallback-' + vid);
+        let loaded = false;
 
-    // Video slider — mouse drag + arrow buttons
+        iframe.addEventListener('load', () => { loaded = true; });
+
+        setTimeout(() => {
+            // If still no load event, or YouTube blocked (CSP / VPN),
+            // check iframe contentWindow is accessible
+            try {
+                if (!loaded) fallback.classList.add('show');
+            } catch(e) {
+                fallback.classList.add('show');
+            }
+        }, 8000);
+    });
+
+    // ── VIDEO SLIDER DRAG ──
     const slider = document.getElementById('video-slider');
     let isDown = false, startX, scrollLeft;
 
